@@ -194,9 +194,9 @@ noremap ; :
 noremap : ;
 noremap Caps_Lock Zenkaku_Hankaku
 inoremap Caps_Lock Zenkaku_Hankaku
-inoremap jj <ESC>
-inoremap <expr> <C-j> pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
-inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
+inoremap jj <ESC>:w<CR>
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-x>\<C-o>"
 
 " command mode
 cnoremap <C-h> <Left>
@@ -257,6 +257,7 @@ map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " fzf
+inoremap <silent> <C-x><C-x><C-j> <Esc>:Snippets<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 

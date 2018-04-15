@@ -46,12 +46,13 @@ Note that removing these directories may affect your previous environment.
 ## Note
 ### Vim
 Tips how to edit with least key typing.
-- add text end of sentence
+- insert a text to the end of sentence
 ```
 <Leader>L
 A
 ```
-- change text middle of sentence
+- move cursol to an arbitrary position  
+If cmigemo is installed, you can search japanese with romaji.  
 ```
 <Leader>s
 ```
@@ -59,13 +60,9 @@ A
 ```
 <S-j> or <S-k>
 ```
-- change forcused tab
+- add " to surround a current line
 ```
-<Leader>s
-```
-- add " surround a current line
-```
-sail""
+sail"
 ```
 
 
