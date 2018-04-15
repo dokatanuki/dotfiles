@@ -44,6 +44,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Shougo/neco-syntax'
 	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
+	" python
+	Plug 'davidhalter/jedi-vim'
+
 	" colorschemes
 	Plug 'tomasr/molokai'
 	Plug 'vim-scripts/twilight'
@@ -74,8 +77,6 @@ set encoding=utf-8
 set fileformats=unix,dos,mac
 set autoindent
 set smartindent
-set nobackup
-set noswapfile
 set autoread
 set noerrorbells
 set nostartofline
@@ -123,6 +124,10 @@ set wildmenu
 set wildmode=list:full
 set wildignore=*.o,*.obj,*.pyc,*.so,*.dll
 
+" show whitespace errors
+hi link WhitespaceError Error
+au vimrc Syntax * syn match WhitespaceError /\s\+$\| \+\ze\t/
+
 
 """"""""""""
 "  Colors  "
@@ -157,6 +162,24 @@ set ignorecase
 set smartcase
 " 検索がファイル末尾まで行ったら、ファイル先頭から再開される
 set wrapscan
+
+
+"""""""""""
+"  Cache  "
+"""""""""""
+if !has('nvim')
+  set viminfo+=n~/.cache/vim/viminfo
+endif
+set dir=~/.cache/vim/swap
+set backup
+set backupdir=~/.cache/vim/backup
+set undofile
+set undodir=~/.cache/vim/undo
+for s:d in [&dir, &backupdir, &undodir]
+  if !isdirectory(s:d)
+    call mkdir(iconv(s:d, &encoding, &termencoding), 'p')
+  endif
+endfor
 
 
 """""""""""""""""
@@ -220,7 +243,7 @@ set notagbsearch
 " カーソルの単語の定義先にジャンプ（複数候補はリスト表示）
 nnoremap tj :exe("tjump ".expand('<cword>'))<CR>
 " tag stack を戻る -> tp(tag pop)よりもtbの方がしっくりきた
-nnoremap tb :pop<CR>
+nnoremap tp :pop<CR>
 " tag stack を進む
 nnoremap tn :tag<CR>
 " 縦にウィンドウを分割してジャンプ
@@ -231,6 +254,8 @@ nnoremap th :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap tl :ts<CR>
 " tag をインクリメンタルに検索
 nnoremap ts :Tags <C-r>=expand("")<CR><CR>
+" tag buffer をインクリメンタルに検索
+nnoremap tb :BTags <C-r>=expand("")<CR><CR>
 
 " vimgrep
 nnoremap [q :cprevious<CR>
@@ -307,3 +332,21 @@ let g:deoplete#enable_at_startup = 1
 
 " ultisnips 
 let g:UltiSnipsExpandTrigger="<tab>"
+
+
+
+""""""""""""
+"  python  "
+""""""""""""
+" jedi-vim
+augroup PythonAutoCommands
+	autocmd!
+	autocmd FileType python setlocal completeopt-=preview
+augroup END
+let g:jedi#goto_command = ""
+let g:jedi#goto_assignments_command = ""
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = ""
+let g:jedi#completions_command = ""
+let g:jedi#rename_command = ""
