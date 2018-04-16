@@ -7,7 +7,7 @@ Dotfiles for my personal use.
 
 ## Requirement
 ### Required
-- Neovim
+- Neovim or Vim8 (I haven't tested Vim8)
 - Zsh
 - Git
 - fzf
@@ -46,25 +46,27 @@ Note that removing these directories may affect your previous environment.
 ## Note
 ### Vim
 Tips how to edit with least key typing.
-- insert a text to the end of sentence
-```
-<Leader>L
-A
-```
 - move cursol to an arbitrary position  
 If cmigemo is installed, you can search japanese with romaji.  
 ```
 <Leader>s
 ```
-- scroll half of page
+
+- jump next paragraph
 ```
-<S-j> or <S-k>
-```
-- add " to surround a current line
-```
-sail"
+<S-j>
 ```
 
+- jump previous paragraph
+```
+<S-k>
+```
+
+- delete text between "  
+on text you wanna delete
+```
+di"
+```
 
 ## Reference
 [zplug](https://github.com/zplug/zplug "zplug")  

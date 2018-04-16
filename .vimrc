@@ -211,8 +211,9 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
-noremap <S-j> <C-d>
-noremap <S-k> <C-b>
+" Jump next(prev) paragraph
+noremap <S-j> }
+noremap <S-k> {
 noremap ; :
 noremap : ;
 noremap Caps_Lock Zenkaku_Hankaku
@@ -243,7 +244,7 @@ set notagbsearch
 " カーソルの単語の定義先にジャンプ（複数候補はリスト表示）
 nnoremap tj :exe("tjump ".expand('<cword>'))<CR>
 " tag stack を戻る -> tp(tag pop)よりもtbの方がしっくりきた
-nnoremap tp :pop<CR>
+nnoremap tb :pop<CR>
 " tag stack を進む
 nnoremap tn :tag<CR>
 " 縦にウィンドウを分割してジャンプ
@@ -254,8 +255,6 @@ nnoremap th :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap tl :ts<CR>
 " tag をインクリメンタルに検索
 nnoremap ts :Tags <C-r>=expand("")<CR><CR>
-" tag buffer をインクリメンタルに検索
-nnoremap tb :BTags <C-r>=expand("")<CR><CR>
 
 " vimgrep
 nnoremap [q :cprevious<CR>
