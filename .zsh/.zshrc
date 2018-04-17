@@ -120,15 +120,6 @@ fi
 ############
 # function #
 ############
-function edit_file_select(){
-	local file
-	if type fzf-tmux >/dev/null 2>&1 ; then
-		file=$(fzf-tmux --query="$1" --select-1 --exit-0 --height=40 --reverse --border --preview 'cat {}')
-	elif type fzf >/dev/null 2>&1 ; then
-		file=$(fzf --query="$1" --select-1 --exit-0 --height=40 --reverse --border --preview 'cat {}')
-	fi
-	[ -n "$file" ] && nvim "$file"
-}
 
 ########
 # tool #
@@ -144,7 +135,6 @@ eval "$(pyenv init -)"
 # neovim
 if type "nvim" > /dev/null 2>&1; then
 	alias vim="nvim"
-	alias edit="edit_file_select"
 else
 fi
 export XDG_CONFIG_HOME=~/.config
