@@ -85,7 +85,7 @@ set tabstop=4
 set softtabstop=4
 set smarttab
 " スクロール開始位置
-set scrolloff=5
+set scrolloff=10
 " 補完マップの長さ
 set pumheight=10
 " バックスペースを有効化
@@ -219,8 +219,8 @@ noremap : ;
 noremap Caps_Lock Zenkaku_Hankaku
 inoremap Caps_Lock Zenkaku_Hankaku
 inoremap jj <ESC>:w<CR>
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-x>\<C-o>"
+inoremap <silent> <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+inoremap <silent> <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-x>\<C-o>"
 
 " command mode
 cnoremap <C-h> <Left>
@@ -276,9 +276,7 @@ augroup END
 " vim-easymotion
 " s{char}{char} to move to {char}{char}
 nmap <Leader>s <Plug>(easymotion-overwin-f2)
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
+nmap <Leader>w <Plug>(easymotion-bd-wl)
 
 " fzf
 inoremap <silent> <C-x><C-x><C-j> <Esc>:Snippets<CR>
