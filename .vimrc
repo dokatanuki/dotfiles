@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'kana/vim-operator-user' | Plug 'rhysd/vim-operator-surround' 
 
 	" utilities
+	Plug 'vim-scripts/vim-auto-save'
 	Plug 'tpope/vim-fugitive'
 	Plug 'machakann/vim-highlightedyank'
 	Plug 'rhysd/migemo-search.vim'
@@ -223,7 +224,7 @@ noremap ; :
 noremap : ;
 noremap Caps_Lock Zenkaku_Hankaku
 inoremap Caps_Lock Zenkaku_Hankaku
-inoremap jj <ESC>:w<CR>
+inoremap jj <ESC>
 inoremap <silent> <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <silent> <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-x>\<C-o>"
 
@@ -311,6 +312,9 @@ nmap ga <Plug>(EasyAlign)
 map <silent>sa <Plug>(operator-surround-append)
 map <silent>sd <Plug>(operator-surround-delete)
 map <silent>sr <Plug>(operator-surround-replace)
+
+" vim-auto-save
+let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " fugative
 " ステータス行に現在のgitブランチを表示する
