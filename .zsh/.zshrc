@@ -138,7 +138,6 @@ if type "nvim" > /dev/null 2>&1; then
 else
 	alias vim="/usr/bin/vim"
 fi
-alias vim="/usr/bin/vim"
 export XDG_CONFIG_HOME=~/.config
 
 # tmux
