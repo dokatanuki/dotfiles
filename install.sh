@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(".vimrc" ".zshenv" ".zsh" ".tmux.conf")
+DOT_FILES=(".vimrc" ".zshenv" ".zsh" ".tmux.conf" ".latexmkrc")
 
 echo "install dotfiles."
 echo "----------------------------"

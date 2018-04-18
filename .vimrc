@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'Lokaltog/vim-easymotion'
 	Plug 'Yggdroot/indentLine'
 	Plug 'kana/vim-smartinput'
+	Plug 'junegunn/vim-easy-align'
 	Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line'
 	Plug 'kana/vim-operator-user' | Plug 'rhysd/vim-operator-surround' 
 
@@ -52,6 +53,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/twilight'
 	Plug 'jacoborus/tender.vim', { 'as': 'tender' }
 	Plug 'dracula/vim', { 'as': 'dracula' }
+
+	" filetype
+	Plug 'lervag/vimtex', {'for': 'tex'}
 call plug#end()
 
 
@@ -201,6 +205,7 @@ augroup END
 """""""""""""""""
 " Leader key
 let mapleader="\<Space>"
+" filetype pluginで使用されるLeader key
 let maplocalleader="\<Space>\<Space>"
 nnoremap <Space> \
 xnoremap <Space> \
@@ -295,6 +300,12 @@ if executable('cmigemo')
     cnoremap <expr><CR> migemosearch#replace_search_word()."\<CR>"
 endif
 
+" vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " vim-operator-surround
 " operator mappings
 map <silent>sa <Plug>(operator-surround-append)
@@ -332,9 +343,9 @@ let g:UltiSnipsExpandTrigger="<tab>"
 
 
 
-""""""""""""
-"  python  "
-""""""""""""
+"""""""""""""
+" filetype  "
+"""""""""""""
 " jedi-vim
 augroup PythonAutoCommands
 	autocmd!
@@ -347,3 +358,6 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = ""
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = ""
+
+" vimtex
+let g:latex_latexmk_options = '-pdf'
