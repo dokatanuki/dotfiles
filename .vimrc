@@ -139,7 +139,7 @@ au vimrc Syntax * syn match WhitespaceError /\s\+$\| \+\ze\t/
 " colors
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
-	set termguicolors
+	" set termguicolors
 endif
 
 " For Neovim 0.1.3 and 0.1.4

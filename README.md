@@ -8,7 +8,7 @@ Dotfiles for my personal use.
 
 ### Requirement
 ### `Required`
-- Neovim or Vim8 (I haven't tested Vim8)
+- Neovim or Vim8
 - Zsh
 - Git
 - fzf
@@ -49,13 +49,26 @@ Note that removing these directories may affect your previous environment.
 ---
 
 ### Note
+### Install Vim8 to Ubuntu
+```sh
+$ sudo apt-add-repository ppa:jonathonf/vim
+$ sudo apt update
+$ sudo apt install vim
+```
+Vim8 might raise error even if :echo has("python3") is 1.  
+You should check python3 path run in Vim8.  
+```
+:python3 print(sys.path)
+```
+Install neovim module to python3 printed.  
+
 ### Install latexmk
 ### `MacOS`
-```
+```sh
 $ brew cask install mactex
 ```
 ### `Ubuntu`
-```
+```sh
 $ sudo apt-get update
 $ sudo apt-get upgrade
 $ sudo apt-add-repository:texlive-backports/ppa
