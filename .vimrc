@@ -53,7 +53,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tomasr/molokai'
 	Plug 'vim-scripts/twilight'
 	Plug 'jacoborus/tender.vim', { 'as': 'tender' }
-	Plug 'dracula/vim', { 'as': 'dracula' }
+	Plug 'jonathanfilip/vim-lucius'
+	Plug 'w0ng/vim-hybrid'
 
 	" filetype
 	Plug 'lervag/vimtex', {'for': 'tex'}
@@ -148,10 +149,10 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Theme
 syntax enable
-colorscheme tender
+colorscheme hybrid
 
 " set airline theme
-let g:airline_theme = 'tender'
+" let g:airline_theme = ''
 
 
 """"""""""""
@@ -193,11 +194,11 @@ endfor
 " colorschemeの読み込みが完了したあとにカラー設定の上書き
 augroup TransparentBG
 	autocmd!
-	autocmd Colorscheme * highlight Normal ctermbg=none
-	autocmd Colorscheme * highlight NonText ctermbg=none
-	autocmd Colorscheme * highlight LineNr ctermbg=none
-	autocmd Colorscheme * highlight Folded ctermbg=none
-	autocmd Colorscheme * highlight EndOfBuffer ctermbg=none
+"	autocmd Colorscheme * highlight Normal ctermbg=none
+"	autocmd Colorscheme * highlight NonText ctermbg=none
+"	autocmd Colorscheme * highlight LineNr ctermbg=none
+"	autocmd Colorscheme * highlight Folded ctermbg=none
+"	autocmd Colorscheme * highlight EndOfBuffer ctermbg=none
 augroup END
 
 
