@@ -15,6 +15,11 @@ do
 	fi
 done
 
+mkdir -p $HOME/.vim/ftplugin
+
+ln -s $HOME/dotfiles/.vim/ftplugin/python.vim $HOME/.vim/ftplugin/python.vim
+echo "symbolic link: $HOME/dotfiles/.vim/ftplugin/python.vim -> $HOME/.vim/ftplugin/python.vim"
+
 if type "nvim" > /dev/null 2>&1 ; then
 	mkdir -p $HOME/.config/nvim
 	if [ -e $HOME/.config/nvim/init.vim ] ; then
