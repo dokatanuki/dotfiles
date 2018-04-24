@@ -124,13 +124,11 @@ fi
 ########
 # tool #
 ########
-# conda 
-alias activate="source $PYENV_ROOT/versions/anaconda3-4.4.0/bin/activate"
-
-# pyenv
+# pyenv, pyenv-virtualenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # neovim
 if type "nvim" > /dev/null 2>&1; then
