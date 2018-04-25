@@ -29,7 +29,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'majutsushi/tagbar'
 	Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 	Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
-	Plug 'junegunn/vim-peekaboo'
 	Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 
 	" completion and linting
@@ -57,6 +56,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'w0ng/vim-hybrid'
 
 	" filetype
+	Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 	Plug 'lervag/vimtex', {'for': 'tex'}
 call plug#end()
 
