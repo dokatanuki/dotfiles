@@ -146,6 +146,9 @@ fi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# go
+export PATH="$PATH:$HOME/.go"
+
 ######
 # os # 
 ######
