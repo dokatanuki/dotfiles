@@ -24,7 +24,7 @@ Dotfiles for my personal use.
 ### `Install`
 ```sh
 $ cd ~
-$ git clone https://github.comdokatanuki/dotfiles.git
+$ git clone https://github.com/dokatanuki/dotfiles.git
 $ cd dotfiles
 $ bash install.sh
 ```

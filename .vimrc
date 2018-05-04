@@ -150,7 +150,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme hybrid
+colorscheme molokai
 
 " set airline theme
 " let g:airline_theme = ''
@@ -360,7 +360,7 @@ augroup END
 let g:jedi#goto_command = ""
 let g:jedi#goto_assignments_command = ""
 let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
+let g:jedi#documentation_command = "H"
 let g:jedi#usages_command = ""
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = ""
