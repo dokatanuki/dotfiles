@@ -130,6 +130,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # neovim
 if type "nvim" > /dev/null 2>&1; then
 	alias vim="nvim"

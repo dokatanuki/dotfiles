@@ -12,9 +12,10 @@ Dotfiles for my personal use.
 - Zsh
 - Git
 - fzf
-- ctags
 ### `Optional`
 - tmux
+- direnv
+- ctags
 - cmigemo
 - latexmk
 
@@ -31,7 +32,7 @@ $ bash install.sh
 
 ### `Update vim plugin`
 When you launch vim for the first time, vim starts to install vim-plug automatically.  
-Then, you need to run PlugInstall command in vim cmdline to install plugins listed in ".vimrc".
+Then, you need to run PlugInstall in vim cmdline to install plugins listed in ".vimrc".
 ```
 :PlugInstall
 ```
@@ -55,12 +56,13 @@ $ sudo apt-add-repository ppa:jonathonf/vim
 $ sudo apt update
 $ sudo apt install vim
 ```
-Vim8 might raise error even if :echo has("python3") is 1.  
-You should check python3 path run in Vim8.  
+Vim8 might raise error even if :echo has("python3") is True.  
+Maybe your vim refers system python.  
+(If you use pyenv or something like that, this problem might occur.)  
 ```
 :python3 print(sys.path)
 ```
-Install neovim module to python3 printed.  
+You should add python3 path manually to ".vim/ftplugin/python.vim".  
 
 ### Install latexmk
 ### `MacOS`

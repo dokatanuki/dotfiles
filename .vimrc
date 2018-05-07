@@ -150,7 +150,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme molokai
+colorscheme hybrid
 
 " set airline theme
 " let g:airline_theme = ''
