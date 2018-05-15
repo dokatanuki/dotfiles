@@ -150,7 +150,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme hybrid
+colorscheme lucius
 
 " set airline theme
 " let g:airline_theme = ''
@@ -241,7 +241,8 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 
 " toggles
-nnoremap <silent> <Leader>tf :NERDTreeToggle<CR>
+" nnoremap <silent> <Leader>tf :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>tf :Files<CR>
 nnoremap <silent> <Leader>tl :ALEToggle<CR>
 nnoremap <silent> <Leader>tt :TagbarToggle<CR>
 nnoremap <silent> <Leader>tu :UndotreeToggle<CR>
@@ -360,7 +361,7 @@ augroup END
 let g:jedi#goto_command = ""
 let g:jedi#goto_assignments_command = ""
 let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "H"
+let g:jedi#documentation_command = ","
 let g:jedi#usages_command = ""
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = ""
