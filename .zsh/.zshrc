@@ -3,6 +3,7 @@
 #  Environment Variables  #
 ###########################
 export LANG=ja_JP.UTF-8
+export EDITOR=nvim
 ## 重複パスを登録しない
 typeset -U path cdpath fpath manpath
 
