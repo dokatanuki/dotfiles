@@ -22,10 +22,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'kana/vim-operator-user' | Plug 'rhysd/vim-operator-surround' 
 
 	" utilities
+	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'vim-scripts/vim-auto-save'
 	Plug 'tpope/vim-fugitive'
 	Plug 'machakann/vim-highlightedyank'
-	Plug 'rhysd/migemo-search.vim'
 	Plug 'majutsushi/tagbar'
 	Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 	Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
@@ -151,9 +151,6 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
 set bg=dark
 colorscheme lucius
-
-" set airline theme
-" let g:airline_theme = ''
 
 
 """"""""""""
@@ -299,10 +296,6 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 " vim-easymotion
 let g:EasyMotion_do_mapping=0
 let g:EasyMotion_smartcase=1
-if executable('cmigemo')
-	let g:EasyMotion_use_migemo=1
-    cnoremap <expr><CR> migemosearch#replace_search_word()."\<CR>"
-endif
 
 " vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -315,6 +308,8 @@ nmap ga <Plug>(EasyAlign)
 map <silent>sa <Plug>(operator-surround-append)
 map <silent>sd <Plug>(operator-surround-delete)
 map <silent>sr <Plug>(operator-surround-replace)
+
+" denite.nvim
 
 " vim-auto-save
 let g:auto_save = 1  " enable AutoSave on Vim startup

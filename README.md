@@ -11,12 +11,11 @@ Dotfiles for my personal use.
 - Neovim or Vim8
 - Zsh
 - Git
-- fzf
+- fzf (dotfiles will install automatically)
 ### `Optional`
 - tmux
 - direnv
 - ctags
-- cmigemo
 - latexmk
 
 ---
