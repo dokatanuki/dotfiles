@@ -310,7 +310,7 @@ map <silent>sd <Plug>(operator-surround-delete)
 map <silent>sr <Plug>(operator-surround-replace)
 
 " vim-auto-save
-let g:auto_save = 1  " enable AutoSave on Vim startup
+" let g:auto_save = 1  " enable AutoSave on Vim startup
 
 " fugative
 " ステータス行に現在のgitブランチを表示する
@@ -334,6 +334,10 @@ endif
 " ale
 " ファイルをオープンした際にlintしない(vimgrep用)
 let g:ale_lint_on_enter = 0
+let g:ale_fixers = {
+\   'python': ['autopep8', 'isort'],
+\}
+let g:ale_fix_on_save = 1
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
