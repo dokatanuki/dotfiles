@@ -309,8 +309,6 @@ map <silent>sa <Plug>(operator-surround-append)
 map <silent>sd <Plug>(operator-surround-delete)
 map <silent>sr <Plug>(operator-surround-replace)
 
-" denite.nvim
-
 " vim-auto-save
 let g:auto_save = 1  " enable AutoSave on Vim startup
 
