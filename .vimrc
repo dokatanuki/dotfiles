@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
 
 	" utilities
 	Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'vim-scripts/vim-auto-save'
+	Plug 'vim-scripts/gtags.vim'
 	Plug 'tpope/vim-fugitive'
 	Plug 'machakann/vim-highlightedyank'
 	Plug 'majutsushi/tagbar'
@@ -238,8 +238,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 
 " toggles
-" nnoremap <silent> <Leader>tf :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>tf :Files<CR>
+nnoremap <silent> <Leader>tf :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>tl :ALEToggle<CR>
 nnoremap <silent> <Leader>tt :TagbarToggle<CR>
 nnoremap <silent> <Leader>tu :UndotreeToggle<CR>
@@ -262,13 +261,22 @@ nnoremap tl :ts<CR>
 " tag をインクリメンタルに検索
 nnoremap ts :Tags <C-r>=expand("")<CR><CR>
 
+" gtags
+" 定義を探す
+nnoremap gj :GtagsCursor<CR>
+" 参照を探す
+nnoremap gk :Gtags -r <C-r><C-w><CR>
+" 戻る
+nnoremap gn :cn<CR>
+nnoremap gp :cp<CR>
+
 " vimgrep
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :<C-u>cfirst<CR>
 nnoremap ]Q :<C-u>clast<CR>
 " binaryや.gitファイルを探索しない
-set grepprg=grep\ -rnI\ --exclude-dir=.svn\ --exclude-dir=.git
+set grepprg=grep\ -rnI\ --exclude-dir=.svn\ --exclude-dir=.git\ --exclude-dir=tags
 nnoremap <Leader>g :vimgrep "" **<Left><Left><Left><Left>
 
 " quickfix
@@ -309,9 +317,6 @@ map <silent>sa <Plug>(operator-surround-append)
 map <silent>sd <Plug>(operator-surround-delete)
 map <silent>sr <Plug>(operator-surround-replace)
 
-" vim-auto-save
-" let g:auto_save = 1  " enable AutoSave on Vim startup
-
 " fugative
 " ステータス行に現在のgitブランチを表示する
 set statusline+=%{fugitive#statusline()}
@@ -344,7 +349,6 @@ let g:deoplete#enable_at_startup = 1
 
 " ultisnips 
 let g:UltiSnipsExpandTrigger="<tab>"
-
 
 
 """""""""""""

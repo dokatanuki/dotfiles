@@ -11,11 +11,13 @@ Dotfiles for my personal use.
 - Neovim or Vim8
 - Zsh
 - Git
-- fzf (dotfiles will install automatically)
+- fzf
+- Python3
 ### `Optional`
 - tmux
 - direnv
 - ctags
+- gtags
 - latexmk
 
 ---
@@ -75,6 +77,17 @@ $ sudo apt-get upgrade
 $ sudo apt-add-repository:texlive-backports/ppa
 $ sudo apt-get install texlive-lang-cjk
 $ sudo apt-get install latexmk
+```
+
+### Install gtags
+### `MacOS or Linux`
+Assume that you already downloaded gtags source and extract it.  
+```sh
+$ ./configure
+$ make
+$ cd global-xxx
+$ cp global/global ~/bin
+$ cp gtags/gtags ~/bin
 ```
 
 ---

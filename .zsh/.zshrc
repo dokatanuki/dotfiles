@@ -26,7 +26,7 @@ autoload -Uz is-at-least
 autoload -Uz compinit && compinit
 
 setopt always_to_end
-setopt complete_in_word
+# setopt complete_in_word
 # スペルミスを保管
 setopt correct
 setopt magic_equal_subst
@@ -129,8 +129,8 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
-# fh - repeat history
-function fh() {
+# fzf ヒストリー
+function hi() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height 40% --reverse | sed 's/ *[0-9]* *//')
 }
 
@@ -143,6 +143,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 path=(
 	$PYENV_ROOT/bin
 	$path
+	$HOME/bin
 )
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
