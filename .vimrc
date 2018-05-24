@@ -48,6 +48,9 @@ call plug#begin('~/.vim/plugged')
 	" python
 	Plug 'davidhalter/jedi-vim'
 
+	" ruby on rails
+	Plug 'tpope/vim-rails'
+
 	" colorschemes
 	Plug 'tomasr/molokai'
 	Plug 'vim-scripts/twilight'
@@ -339,8 +342,9 @@ endif
 " ale
 " ファイルをオープンした際にlintしない(vimgrep用)
 let g:ale_lint_on_enter = 0
+"\   'python': ['autopep8', 'isort'],
 let g:ale_fixers = {
-\   'python': ['autopep8', 'isort'],
+\   'python': [],
 \}
 let g:ale_fix_on_save = 1
 

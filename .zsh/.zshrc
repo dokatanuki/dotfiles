@@ -73,7 +73,7 @@ function _update_vcs_info_msg() {
     LANG=en_US.UTF-8 vcs_info
     RPROMPT="${vcs_info_msg_0_}"
 }
-add-zsh-hook precmd _update_vcs_info_msg
+# add-zsh-hook precmd _update_vcs_info_msg
 
 
 ###########
@@ -130,10 +130,9 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 
 # fzf ヒストリー
-function hi() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height 40% --reverse | sed 's/ *[0-9]* *//')
+function fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height 40% --reverse --prompt="History > " | sed 's/ *[0-9]* *//')
 }
-
 
 ########
 # tool #
@@ -232,9 +231,7 @@ zplug "b4b4r07/enhancd, use:init.sh"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "junegunn/fzf-bin, from:gh-r, as:command, rename-to:fzf"
 
-# prompt
-zplug "mafredri/zsh-async, from:github"
-zplug "sindresorhus/pure, use:pure.zsh, from:github, as:theme"
+zplug "nojhan/liquidprompt"
 
 # install plugin
 if ! zplug check ; then

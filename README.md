@@ -17,7 +17,7 @@ Dotfiles for my personal use.
 - tmux
 - direnv
 - ctags
-- gtags
+- gtags + Python2.7
 - latexmk
 
 ---
@@ -86,6 +86,7 @@ Assume that you already downloaded gtags source and extract it.
 $ ./configure
 $ make
 $ cd global-xxx
+$ cp gtags.conf ~/.globalrc
 $ cp global/global ~/bin
 $ cp gtags/gtags ~/bin
 ```
@@ -98,3 +99,4 @@ $ cp gtags/gtags ~/bin
 [vim-plug](https://github.com/junegunn/vim-plug "vim-plug")  
 [latexmk で楽々 TeX タイプセットの薦め](https://konn-san.com/prog/why-not-latexmk.html "latexmk で楽々 TeX タイプセットの薦め")  
 [ミニマリストのためのVim + Tex環境](https://qiita.com/kota9/items/e6c6726a693118299d6b "ミニマリストのためのVim + Tex環境")  
+[ctag, gtagsで超捗るコードリーディング](https://qiita.com/coil_msp123/items/cb36e6698aa6734a901e "ctag, gtagsで超捗るコードリーディング")  
