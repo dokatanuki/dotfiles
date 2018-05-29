@@ -16,9 +16,12 @@ do
 done
 
 mkdir -p $HOME/.vim/ftplugin
+mkdir -p $HOME/.vim/ftdetect
 
 ln -s $HOME/dotfiles/.vim/ftplugin/python.vim $HOME/.vim/ftplugin/python.vim
 echo "symbolic link: $HOME/dotfiles/.vim/ftplugin/python.vim -> $HOME/.vim/ftplugin/python.vim"
+ln -s $HOME/dotfiles/.vim/ftdetect/j2.vim $HOME/.vim/ftdetect/j2.vim
+echo "symbolic link: $HOME/dotfiles/.vim/ftdetect/j2.vim -> $HOME/.vim/ftdetect/j2.vim"
 
 if type "nvim" > /dev/null 2>&1 ; then
 	mkdir -p $HOME/.config/nvim

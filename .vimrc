@@ -61,6 +61,7 @@ call plug#begin('~/.vim/plugged')
 	" filetype
 	Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 	Plug 'lervag/vimtex', {'for': 'tex'}
+	Plug 'Glench/Vim-Jinja2-Syntax', {'for': 'j2'}
 call plug#end()
 
 
@@ -92,6 +93,7 @@ set nostartofline
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
+set expandtab
 set smarttab
 " スクロール開始位置
 set scrolloff=10
@@ -178,6 +180,7 @@ if !has('nvim')
   set viminfo+=n~/.cache/vim/viminfo
 endif
 set dir=~/.cache/vim/swap
+set noswapfile
 set backup
 set backupdir=~/.cache/vim/backup
 set undofile
@@ -345,6 +348,7 @@ let g:ale_lint_on_enter = 0
 "\   'python': ['autopep8', 'isort'],
 let g:ale_fixers = {
 \   'python': [],
+\   'cpp': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
 

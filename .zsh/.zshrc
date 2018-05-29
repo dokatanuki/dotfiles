@@ -147,6 +147,9 @@ path=(
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# nodejs
+export PATH=$PATH:$HOME/.nodebrew/current/bin
+
 # direnv
 eval "$(direnv hook zsh)"
 
