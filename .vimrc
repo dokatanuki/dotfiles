@@ -48,9 +48,6 @@ call plug#begin('~/.vim/plugged')
 	" python
 	Plug 'davidhalter/jedi-vim'
 
-	" ruby on rails
-	Plug 'tpope/vim-rails'
-
 	" colorschemes
 	Plug 'tomasr/molokai'
 	Plug 'vim-scripts/twilight'
@@ -61,7 +58,7 @@ call plug#begin('~/.vim/plugged')
 	" filetype
 	Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 	Plug 'lervag/vimtex', {'for': 'tex'}
-	Plug 'Glench/Vim-Jinja2-Syntax', {'for': 'j2'}
+    Plug 'aklt/plantuml-syntax'
 call plug#end()
 
 
