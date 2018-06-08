@@ -42,8 +42,10 @@ call plug#begin('~/.vim/plugged')
 		Plug 'roxma/nvim-yarp'
 		Plug 'roxma/vim-hug-neovim-rpc'
 	endif
-	Plug 'Shougo/neco-syntax'
 	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'Shougo/neco-vim'
+    Plug 'Shougo/neco-syntax'
+    Plug 'ujihisa/neco-look'
 
 	" python
 	Plug 'davidhalter/jedi-vim'
