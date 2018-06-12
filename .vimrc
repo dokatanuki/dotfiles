@@ -14,7 +14,6 @@ call plug#begin('~/.vim/plugged')
 	" editing
 	Plug 'junegunn/vim-plug', {
 		\ 'dir': '~/.vim/plugged/vim-plug/autoload'}
-	Plug 'Lokaltog/vim-easymotion'
 	Plug 'Yggdroot/indentLine'
 	Plug 'kana/vim-smartinput'
 	Plug 'junegunn/vim-easy-align'
@@ -292,11 +291,6 @@ augroup QfAutoCommands
 	autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 
-" vim-easymotion
-" s{char}{char} to move to {char}{char}
-nmap <Leader>s <Plug>(easymotion-overwin-f2)
-nmap <Leader>w <Plug>(easymotion-bd-wl)
-
 " fzf
 inoremap <silent> <C-x><C-x><C-j> <Esc>:Snippets<CR>
 nnoremap <silent> <Leader>f :Files<CR>
@@ -306,9 +300,6 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 """"""""""""""""""
 "  Plugin option "
 """"""""""""""""""
-" vim-easymotion
-let g:EasyMotion_do_mapping=0
-let g:EasyMotion_smartcase=1
 
 " vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
