@@ -1,38 +1,50 @@
 #!/bin/bash
 
-DOT_FILES=(".vimrc" ".zshenv" ".zsh" ".tmux.conf" ".latexmkrc")
+DOT_FILES=(".vimrc" ".tmux.conf")
+FISH_FILES=("config.fish" "fishfile")
 
 echo "install dotfiles."
 echo "----------------------------"
 
+# dotfiles
 for file in ${DOT_FILES[@]}
 do
 	if [ -e $HOME/$file ] ; then
-		echo "$file is already exist."
+        echo "hoge"
 	else
-		ln -s $HOME/dotfiles/$file $HOME/$file
-		echo "symbolic link: $HOME/dotfiles/$file -> $HOME/$file"
+		ln -sv $HOME/dotfiles/$file $HOME/$file
 	fi
 done
 
-mkdir -p $HOME/.vim/ftplugin
-mkdir -p $HOME/.vim/ftdetect
+# fish shell
+if type "fish" > /dev/null 2>&1 ; then
+    # fish config files
+    for file in ${FISH_FILES[@]}
+    do
+        if [ -e $HOME/.config/.fish/$file ] ; then
+            echo "hoge"
+        else
+            ln -sv $HOME/dotfiles/.fish/$file $HOME/.config/fish/$file
+        fi
+    done
 
-ln -s $HOME/dotfiles/.vim/ftplugin/python.vim $HOME/.vim/ftplugin/python.vim
-echo "symbolic link: $HOME/dotfiles/.vim/ftplugin/python.vim -> $HOME/.vim/ftplugin/python.vim"
-ln -s $HOME/dotfiles/.vim/ftdetect/j2.vim $HOME/.vim/ftdetect/j2.vim
-echo "symbolic link: $HOME/dotfiles/.vim/ftdetect/j2.vim -> $HOME/.vim/ftdetect/j2.vim"
+    # fisher
+    if type "fisher" > /dev/null 2>&1 ; then
+		echo "-------------- download fisher --------------"
+        curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
+        echo "-------------- fisher install complete! --------------"
+    fi
+fi
 
+# Neovim
 if type "nvim" > /dev/null 2>&1 ; then
 	mkdir -p $HOME/.config/nvim
 	if [ -e $HOME/.config/nvim/init.vim ] ; then
 		echo "init.vim is already exist."
 	else
-		ln -s $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
+		ln -sv $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
 		echo "symbolic link: $HOME/dotfiles/.vimrc -> $HOME/.config/nvim/init.vim"
 	fi
-else
-	echo "please install neovim and run this script again."
 fi
 
 echo "----------------------------"
