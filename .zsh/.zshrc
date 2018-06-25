@@ -129,11 +129,6 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
-# fzf ヒストリー
-function fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac --height 40% --reverse --prompt="History > " | sed 's/ *[0-9]* *//')
-}
-
 ########
 # tool #
 ########
