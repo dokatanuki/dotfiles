@@ -7,6 +7,11 @@ set -x TERM xterm-256color
 set -x EDITOR vim
 set -x XDG_CONFIG_HOME ~/.config
 
+## vi mode
+fish_vi_key_bindings
+function fish_mode_prompt 
+end
+
 
 #########
 # ALIAS #
@@ -30,13 +35,31 @@ function cd
     ls
 end
 
+# gitのbranch名取得
+function _git_branch
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+end
+
+# 右prompt
+function fish_right_prompt
+    echo (_git_branch)
+end
+
+# my change directory
+function j
+    z -l | awk '{ print $2 }' | fzf | read selected_dir
+
+    if test -n $selected_dir
+        cd $selected_dir
+    end
+end
 
 ##########
 # PLUGIN #
 ##########
 # z
 eval (mkdir -p $HOME/.z)
-set -x Z_CMD 'j'
+set -x Z_CMD 'z'
 set -x Z_DATA "$HOME/.z/.z"
 
 
@@ -62,7 +85,7 @@ if test (string length (type 'direnv')) -gt 0
     eval (direnv hook fish)
 end
 
-# fzf TODO: fzfで隠しファイルも検索
+# fzf
 set -x FZF_DEFAULT_COMMAND 'ag --hidden -g ""'
 set -x FZF_DEFAULT_OPTS '--height 40% --reverse --border'
 
