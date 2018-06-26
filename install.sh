@@ -40,4 +40,9 @@ if type "nvim" > /dev/null 2>&1 ; then
     fi
 fi
 
+# UltiSnips
+if [ ! -e $HOME/.vim/UltiSnips ] ; then
+    ln -sv $HOME/dotfiles/.vim/UltiSnips/ $HOME/.vim/UltiSnips
+fi
+
 echo "-------------- dotfiles install complete! --------------"

@@ -345,8 +345,7 @@ augroup END
 
 " ultisnips 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsSnippetsDir='~/dotfiles/.vim/UltiSnips'
-" TODO: snippetsが反映されない
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
 " denite
 call denite#custom#var('file_rec', 'command',
