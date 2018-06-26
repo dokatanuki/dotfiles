@@ -6,16 +6,23 @@ Dotfiles for my personal use.
 
 ---
 
+## Caution
+Assume that your default shell is bash.  
+bash will automatically execute tmux(tmux's default shell is fish) and exit.  
+This makes it possible that default shell is bash but run fish like a default shell.  
+
+---
+
 ### Requirement
 ### `Required`
 - Neovim or Vim8
-- Python3 and "neovim" module
+- Python3 and 'neovim' module
 - fish shell
 - tmux
 ### `Optional`
-- direnv
-- ctags
 - ag
+- ctags
+- direnv
 
 ---
 
@@ -50,3 +57,4 @@ $ sudo apt install vim
 ### Reference
 [vim-plug](https://github.com/junegunn/vim-plug "vim-plug")  
 [ctag, gtagsで超捗るコードリーディング](https://qiita.com/coil_msp123/items/cb36e6698aa6734a901e "ctag, gtagsで超捗るコードリーディング")  
+[ag: The Silver Searcher](https://github.com/ggreer/the_silver_searcher "The Silver Searcher")
