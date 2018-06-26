@@ -9,13 +9,13 @@ Dotfiles for my personal use.
 ### Requirement
 ### `Required`
 - Neovim or Vim8
+- Python3 and "neovim" module
 - fish shell
-- Git
-- Python3
-### `Optional`
 - tmux
+### `Optional`
 - direnv
 - ctags
+- ag
 
 ---
 
@@ -33,13 +33,6 @@ When you launch vim for the first time, vim starts to install vim-plug automatic
 Then, you need to run PlugInstall in vim cmdline to install plugins listed in ".vimrc".
 ```
 :PlugInstall
-```
-
-### Uninstallation
-### `Uninstall`
-```sh
-$ cd ~/dotfiles
-$ bash uninstall.sh
 ```
 
 ---
