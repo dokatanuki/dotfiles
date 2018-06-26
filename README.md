@@ -1,17 +1,13 @@
 # dotfiles
 
 
-## Description
+### Description
 Dotfiles for my personal use.  
 
----
-
-## Caution
+### Caution
 Assume that your default shell is bash.  
 bash will automatically execute tmux(tmux's default shell is fish) and exit.  
 This makes it possible that default shell is bash but run fish like a default shell.  
-
----
 
 ### Requirement
 ### `Required`
@@ -45,7 +41,7 @@ Then, you need to run PlugInstall in vim cmdline to install plugins listed in ".
 ---
 
 ### Note
-### Install Vim8 to Ubuntu
+### `Install Vim8 to Ubuntu`
 ```sh
 $ sudo apt-add-repository ppa:jonathonf/vim
 $ sudo apt update
