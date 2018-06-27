@@ -51,6 +51,7 @@ $ sudo apt install vim
 ---
 
 ### Reference
+[iTerm2 Hotkey Settings](https://qiita.com/okamu_/items/a5086d2d5ba405f35acb "iTerm2")
 [vim-plug](https://github.com/junegunn/vim-plug "vim-plug")  
 [ctag, gtagsで超捗るコードリーディング](https://qiita.com/coil_msp123/items/cb36e6698aa6734a901e "ctag, gtagsで超捗るコードリーディング")  
 [ag: The Silver Searcher](https://github.com/ggreer/the_silver_searcher "The Silver Searcher")
