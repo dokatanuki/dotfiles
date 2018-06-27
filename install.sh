@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(".bashrc" ".vimrc" ".tmux.conf" ".agignore")
+DOT_FILES=(".bashrc" ".vimrc" ".tmux.conf" ".agignore" ".ctags")
 FISH_FILES=("config.fish" "fishfile")
 
 echo "-------------- start install dotfiles --------------"
@@ -18,7 +18,7 @@ if type "fish" > /dev/null 2>&1 ; then
     # fish config files
     for file in ${FISH_FILES[@]}
     do
-        if [ ! -e $HOME/.config/.fish/$file ] ; then
+        if [ ! -e $HOME/.config/fish/$file ] ; then
             ln -sv $HOME/dotfiles/.fish/$file $HOME/.config/fish/$file
         fi
     done
