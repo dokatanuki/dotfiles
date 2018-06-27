@@ -8,9 +8,9 @@ set -x EDITOR vim
 set -x XDG_CONFIG_HOME ~/.config
 
 ## vi mode
-fish_vi_key_bindings
 function fish_mode_prompt 
 end
+fish_vi_key_bindings
 
 
 #########
