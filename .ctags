@@ -1,0 +1,4 @@
+--append=yes
+--recurse=yes
+--exclude=tags
+--exclude=dummy
