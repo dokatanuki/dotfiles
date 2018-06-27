@@ -84,12 +84,12 @@ set encoding=utf-8
 set fileformats=unix,dos,mac
 set autoindent
 set smartindent
-set shiftwidth=4
+set shiftwidth=2
 set autoread
 set noerrorbells
 set nostartofline
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 set expandtab
 set smarttab
 " スクロール開始位置
@@ -143,7 +143,7 @@ au vimrc Syntax * syn match WhitespaceError /\s\+$\| \+\ze\t/
 " colors
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
-    " set termguicolors
+    set termguicolors
 endif
 
 " For Neovim 0.1.3 and 0.1.4
@@ -317,6 +317,7 @@ let g:ale_lint_on_enter = 0
 "\   'python': ['autopep8', 'isort'],
 let g:ale_fixers = {
 \   'python': [],
+\   'c': ['clang-format'],
 \   'cpp': ['clang-format'],
 \}
 let g:ale_fix_on_save = 1
@@ -324,7 +325,7 @@ let g:ale_fix_on_save = 1
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 3
+let g:deoplete#auto_complete_start_length = 2
 let g:deoplete#enable_camel_case = 0
 let g:deoplete#enable_ignore_case = 0
 let g:deoplete#enable_refresh_always = 0
@@ -374,3 +375,46 @@ let g:jedi#usages_command = ""
 let g:jedi#completions_command = ""
 let g:jedi#rename_command = ""
 
+
+""""""""
+" MISC "
+" TODO: デフォルト補完になれてきたら削除する
+"" 入力キーの辞書
+let s:compl_key_dict = {
+      \ char2nr("\<C-l>"): "\<C-x>\<C-l>",
+      \ char2nr("\<C-n>"): "\<C-x>\<C-n>",
+      \ char2nr("\<C-p>"): "\<C-x>\<C-p>",
+      \ char2nr("\<C-k>"): "\<C-x>\<C-k>",
+      \ char2nr("\<C-t>"): "\<C-x>\<C-t>",
+      \ char2nr("\<C-i>"): "\<C-x>\<C-i>",
+      \ char2nr("\<C-]>"): "\<C-x>\<C-]>",
+      \ char2nr("\<C-f>"): "\<C-x>\<C-f>",
+      \ char2nr("\<C-d>"): "\<C-x>\<C-d>",
+      \ char2nr("\<C-v>"): "\<C-x>\<C-v>",
+      \ char2nr("\<C-u>"): "\<C-x>\<C-u>",
+      \ char2nr("\<C-o>"): "\<C-x>\<C-o>",
+      \ char2nr('s'): "\<C-x>s",
+      \ char2nr("\<C-s>"): "\<C-x>s"
+      \}
+" 表示メッセージ
+let s:hint_i_ctrl_x_msg = join([
+      \ '<C-l>: While lines',
+      \ '<C-n>: keywords in the current file',
+      \ "<C-k>: keywords in 'dictionary'",
+      \ "<C-t>: keywords in 'thesaurus'",
+      \ '<C-i>: keywords in the current and included files',
+      \ '<C-]>: tags',
+      \ '<C-f>: file names',
+      \ '<C-d>: definitions or macros',
+      \ '<C-v>: Vim command-line',
+      \ "<C-u>: User defined completion ('completefunc')",
+      \ "<C-o>: omni completion ('omnifunc')",
+      \ "s: Spelling suggestions ('spell')"
+      \], "\n")
+function! s:hint_i_ctrl_x() abort
+  echo s:hint_i_ctrl_x_msg
+  let c = getchar()
+  return get(s:compl_key_dict, c, nr2char(c))
+endfunction
+
+inoremap <expr> <C-x>  <SID>hint_i_ctrl_x()"""""""
