@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(".bashrc" ".vimrc" ".tmux.conf" ".agignore" ".ctags")
+DOT_FILES=(".bashrc" ".vimrc" ".tmux.conf" ".agignore" ".ctags" ".direnvrc")
 FISH_FILES=("config.fish" "fishfile")
 
 echo "-------------- start install dotfiles --------------"
