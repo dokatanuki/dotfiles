@@ -68,20 +68,20 @@ set -x Z_DATA "$HOME/.z/.z"
 # EXTERNAL TOOL #
 #################
 # Neovim
-if test (string length (type 'nvim')) -gt 0
+if test (string length (type 'nvim' ^/dev/null)) -gt 0
     set -x EDITOR nvim
     alias vim='nvim'
 end
 
 # pyenv, pyenv-virtualenv
-if test (string length (type 'pyenv')) -gt 0
+if test (string length (type 'pyenv' ^/dev/null)) -gt 0
     set -x PYENV_ROOT "$HOME/.pyenv"
     set -x PATH $PYENV_ROOT $PATH
     status --is-interactive; and source (pyenv init -|psub); and source (pyenv virtualenv-init -|psub)
 end
 
 # direnv
-if test (string length (type 'direnv')) -gt 0
+if test (string length (type 'direnv' ^/dev/null)) -gt 0
     eval (direnv hook fish)
 end
 
