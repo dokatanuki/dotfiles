@@ -54,6 +54,9 @@ call plug#begin('~/.vim/plugged')
     " python
     Plug 'davidhalter/jedi-vim'
 
+    " plantuml
+    Plug 'aklt/plantuml-syntax'
+
     " colorschemes
     Plug 'jonathanfilip/vim-lucius'
     Plug 'w0ng/vim-hybrid'
