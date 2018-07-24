@@ -45,4 +45,9 @@ if [ ! -e $HOME/.vim/UltiSnips ] ; then
     ln -sv $HOME/dotfiles/.vim/UltiSnips/ $HOME/.vim/UltiSnips
 fi
 
+# ftdetect
+if [ ! -e $HOME/.vim/ftdetect ] ; then
+    ln -sv $HOME/dotfiles/.vim/ftdetect/ $HOME/.vim/ftdetect
+fi
+
 echo "-------------- dotfiles install complete! --------------"

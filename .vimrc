@@ -4,7 +4,6 @@
 " python3 path
 let g:python3_host_prog = expand('~/.pyenv/versions/3.6.4/envs/development/bin/python')
 
-
 if has('vim_starting')
     set rtp+=~/.vim/plugged/vim-plug
     if !isdirectory(expand('~/.vim/plugged/vim-plug'))
