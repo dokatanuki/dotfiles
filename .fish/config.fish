@@ -67,6 +67,11 @@ set -x Z_DATA "$HOME/.z/.z"
 #################
 # EXTERNAL TOOL #
 #################
+# fisherman
+if not test -f ~/.config/fish/functions/fisher.fish
+    curl -sLo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
+    fisher
+
 # Neovim
 if test (string length (type 'nvim' ^/dev/null)) -gt 0 ^/dev/null
     set -x EDITOR nvim
