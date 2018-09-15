@@ -71,6 +71,7 @@ set -x Z_DATA "$HOME/.z/.z"
 if not test -f ~/.config/fish/functions/fisher.fish
     curl -sLo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
     fisher
+end
 
 # Neovim
 if test (string length (type 'nvim' ^/dev/null)) -gt 0 ^/dev/null
@@ -79,11 +80,9 @@ if test (string length (type 'nvim' ^/dev/null)) -gt 0 ^/dev/null
 end
 
 # pyenv, pyenv-virtualenv
-if test (string length (type 'pyenv' ^/dev/null)) -gt 0 ^/dev/null
-    set -x PYENV_ROOT "$HOME/.pyenv"
-    set -x PATH $PYENV_ROOT $PATH
-    status --is-interactive; and source (pyenv init -|psub); and source (pyenv virtualenv-init -|psub)
-end
+set -x PYENV_ROOT "$HOME/.pyenv"
+set -x PATH $PYENV_ROOT $PATH
+status --is-interactive; and source (pyenv init -|psub); and source (pyenv virtualenv-init -|psub)
 
 # direnv
 if test (string length (type 'direnv' ^/dev/null)) -gt 0 ^/dev/null
