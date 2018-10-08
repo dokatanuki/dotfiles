@@ -3,8 +3,6 @@
 DOT_FILES=(".bashrc" ".vimrc" ".tmux.conf" ".agignore" ".ctags" ".direnvrc" ".latexmkrc")
 FISH_FILES=("config.fish" "fishfile")
 
-echo "-------------- start install dotfiles --------------"
-
 # dotfiles
 for file in ${DOT_FILES[@]}
 do
@@ -36,7 +34,6 @@ if type "nvim" > /dev/null 2>&1 ; then
     mkdir -p $HOME/.config/nvim
     if [ ! -e $HOME/.config/nvim/init.vim ] ; then
         ln -sv $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
-        echo "symbolic link: $HOME/dotfiles/.vimrc -> $HOME/.config/nvim/init.vim"
     fi
 fi
 
@@ -49,5 +46,6 @@ fi
 if [ ! -e $HOME/.vim/ftdetect ] ; then
     ln -sv $HOME/dotfiles/.vim/ftdetect/ $HOME/.vim/ftdetect
 fi
-
-echo "-------------- dotfiles install complete! --------------"
+if [ ! -e $HOME/.config/nvim/ftdetect ] ; then
+    ln -sv $HOME/dotfiles/.vim/ftdetect/ $HOME/.config/nvim/ftdetect
+fi

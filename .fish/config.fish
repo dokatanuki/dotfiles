@@ -84,6 +84,9 @@ set -x PYENV_ROOT "$HOME/.pyenv"
 set -x PATH $PYENV_ROOT $PATH
 status --is-interactive; and source (pyenv init -|psub); and source (pyenv virtualenv-init -|psub)
 
+# rbenv
+rbenv init - | source
+
 # direnv
 if test (string length (type 'direnv' ^/dev/null)) -gt 0 ^/dev/null
     eval (direnv hook fish)

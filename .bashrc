@@ -14,3 +14,5 @@ fi
 
 # fishを起動
 exec fish
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

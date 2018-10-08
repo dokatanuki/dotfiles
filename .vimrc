@@ -59,6 +59,7 @@ call plug#begin('~/.vim/plugged')
     " colorschemes
     Plug 'jonathanfilip/vim-lucius'
     Plug 'w0ng/vim-hybrid'
+    Plug 'atelierbram/Base2Tone-vim'
 
     " filetype
 call plug#end()
@@ -146,6 +147,10 @@ au vimrc Syntax * syn match WhitespaceError /\s\+$\| \+\ze\t/
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
     set termguicolors
+    if has('nvim')
+    " https://github.com/neovim/neovim/wiki/FAQ
+    set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+    endif
 endif
 
 " For Neovim 0.1.3 and 0.1.4
@@ -154,7 +159,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme lucius
+colorscheme Base2Tone_EveningDark
 
 
 """"""""""""
@@ -317,10 +322,12 @@ let g:fzf_tags_command = 'ctags -R'
 " ale
 let g:ale_lint_on_enter = 0
 "\   'python': ['autopep8', 'isort'],
+"\   'c': ['clang-format'],
+"\   'cpp': ['clang-format'],
 let g:ale_fixers = {
 \   'python': [],
-\   'c': ['clang-format'],
-\   'cpp': ['clang-format'],
+\   'c': [],
+\   'cpp': [],
 \}
 let g:ale_fix_on_save = 1
 
