@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
     " utilities
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'scrooloose/nerdtree'
+    Plug 'jistr/vim-nerdtree-tabs'
     Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     " TODO: gtagsのpython補完がうまく動かないため保留
@@ -85,16 +86,34 @@ filetype plugin indent on
 """""""""""""
 set encoding=utf-8
 set fileformats=unix,dos,mac
-set autoindent
-set smartindent
-set shiftwidth=2
 set autoread
 set noerrorbells
 set nostartofline
-set tabstop=2
-set softtabstop=2
+" 画面上で表示する1つのタブの幅
+set tabstop=4
+" いくつの連続した空白を1回で削除できるようにするか
+set softtabstop=4
+" 自動インデントでのインデントの長さ
+set shiftwidth=4
+" tabキーを押すとスペースが入力される
 set expandtab
-set smarttab
+" 改行した時に自動でインデントする
+set autoindent
+" {があると次の行は自動で1段深く自動インデントしてくれる
+set smartindent
+
+" filetypeに応じたインデント設定
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.cc setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.h setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.hh setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
 " スクロール開始位置
 set scrolloff=15
 " 補完マップの長さ
@@ -159,7 +178,23 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme Base2Tone_EveningDark
+" colorscheme Base2Tone_EveningDark
+colorscheme Base2Tone_SeaDark
+
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none 
+
+augroup TransparentBG
+  	autocmd!
+	autocmd Colorscheme * highlight Normal ctermbg=none
+	autocmd Colorscheme * highlight NonText ctermbg=none
+	autocmd Colorscheme * highlight LineNr ctermbg=none
+	autocmd Colorscheme * highlight Folded ctermbg=none
+	autocmd Colorscheme * highlight EndOfBuffer ctermbg=none 
+augroup END
 
 
 """"""""""""
@@ -212,6 +247,9 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+nnoremap db dT
+" nnoremap db dTの影響で発生するddのラグをなくす
+nnoremap dd dd
 noremap <S-j> }
 noremap <S-k> {
 noremap ; :
@@ -227,6 +265,9 @@ noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
+nnoremap sn gt
+nnoremap sp gT
+nnoremap st :<C-u>tabnew<CR>
 
 " toggles
 nnoremap <silent> <Leader>tf :NERDTreeToggle<CR>
