@@ -48,6 +48,14 @@ $ sudo apt update
 $ sudo apt install vim
 ```
 
+### `Install pyenv and pyenv-virtualenv`
+```sh
+$ sudo apt-get -y install zlib1g libbz2-dev tk-dev libssl-dev libreadline-dev libsqlite3-dev libffi-dev
+$ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+$ git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+```
+Init script is written at "config.fish".
+
 ---
 
 ### Reference
