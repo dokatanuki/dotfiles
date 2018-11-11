@@ -18,10 +18,12 @@ fish_vi_key_bindings
 #########
 alias ag='ag -S'
 alias cp='cp -iv'
-alias grep='grep -rn --color=auto --exclude-dir={.git,dummy} --exclude={dummy,hoge}'
+# alias grep='grep -rn --color=auto --exclude-dir={.git,dummy} --exclude={dummy,hoge}'
+alias grep='grep --color=auto --exclude-dir={.git,dummy} --exclude={dummy,hoge}'
 alias ls='ls -aF -G'
 alias mkdir='mkdir -p'
 alias mv='mv -iv'
+alias ps='ps -axf'
 alias rm='rm -iv'
 alias ..='cd ..'
 
