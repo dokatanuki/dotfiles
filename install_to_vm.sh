@@ -1,9 +1,7 @@
 #!/bin/bash
 
-DOT_FILES=(".vimrc" ".agignore" ".ctags" ".direnvrc")
+DOT_FILES=(".vimrc" ".agignore" ".ctags" ".tmux.conf")
 FISH_FILES=("config.fish" "fishfile")
-
-echo "-------------- start install dotfiles --------------"
 
 # dotfiles
 for file in ${DOT_FILES[@]}
@@ -31,5 +29,3 @@ if type "nvim" > /dev/null 2>&1 ; then
         ln -sv $HOME/dotfiles/.vimrc $HOME/.config/nvim/init.vim
     fi
 fi
-
-echo "-------------- dotfiles install complete! --------------"
