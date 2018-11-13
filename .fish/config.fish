@@ -102,4 +102,10 @@ end
 set -x FZF_DEFAULT_COMMAND 'ag --hidden -g ""'
 set -x FZF_DEFAULT_OPTS '--height 40% --reverse --border'
 
+# gcc, g++, ccache
+set -x CFLAGS '-Wno-error'
+set -x CXXFLAGS '-Wno-error'
+
+
+
 # tmux: bashから起動, tmuxのデフォルトシェルをfishにしてある

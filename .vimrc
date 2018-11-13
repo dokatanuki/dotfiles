@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'rking/ag.vim'
+    Plug 'airblade/vim-gitgutter'
 
     " completion and linting
     Plug 'w0rp/ale'
@@ -316,7 +317,7 @@ augroup END
 " ag
 if executable('ag')
     let g:ag_working_path_mode="r"
-    nnoremap <Leader>g :Ag --follow --nocolor --nogroup --hidden -S 
+    nnoremap <Leader>s :Ag --follow --nocolor --nogroup --hidden -S 
 endif
 
 " NERDTree
@@ -325,6 +326,7 @@ nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
 " Shortcut
 " nnoremap <silent> <Leader>f :Denite file_rec<CR>
 nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>g :GFiles?<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 
 
