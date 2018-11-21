@@ -182,19 +182,21 @@ set bg=dark
 " colorscheme Base2Tone_EveningDark
 colorscheme Base2Tone_SeaDark
 
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-highlight LineNr ctermbg=none
-highlight Folded ctermbg=none
-highlight EndOfBuffer ctermbg=none 
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+highlight Folded ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 augroup TransparentBG
-  	autocmd!
-	autocmd Colorscheme * highlight Normal ctermbg=none
-	autocmd Colorscheme * highlight NonText ctermbg=none
-	autocmd Colorscheme * highlight LineNr ctermbg=none
-	autocmd Colorscheme * highlight Folded ctermbg=none
-	autocmd Colorscheme * highlight EndOfBuffer ctermbg=none 
+    autocmd!
+    autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight SpecialKey ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 augroup END
 
 
