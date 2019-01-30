@@ -106,6 +106,7 @@ set -x FZF_DEFAULT_OPTS '--height 40% --reverse --border'
 set -x CFLAGS '-Wno-error'
 set -x CXXFLAGS '-Wno-error'
 
-
+# imagemagick path for rails
+set -x PATH /usr/local/opt/imagemagick@6/bin $PATH
 
 # tmux: bashから起動, tmuxのデフォルトシェルをfishにしてある

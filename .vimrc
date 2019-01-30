@@ -113,6 +113,8 @@ augroup fileTypeIndent
     autocmd BufNewFile,BufRead *.cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.h setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.hh setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.erb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " スクロール開始位置
@@ -180,7 +182,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax enable
 set bg=dark
 " colorscheme Base2Tone_EveningDark
-colorscheme Base2Tone_SeaDark
+" colorscheme Base2Tone_SeaDark
+colorscheme Base2Tone_MeadowDark
 
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
