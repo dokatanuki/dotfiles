@@ -36,6 +36,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'rking/ag.vim'
     Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'thinca/vim-quickrun'
+    " Plug 'reireias/vim-cheatsheet'
 
     " completion and linting
     Plug 'w0rp/ale'
@@ -54,6 +57,9 @@ call plug#begin('~/.vim/plugged')
 
     " python
     Plug 'davidhalter/jedi-vim'
+
+    " terraform
+    Plug 'hashivim/vim-terraform'
 
     " plantuml
     Plug 'aklt/plantuml-syntax'
@@ -114,6 +120,7 @@ augroup fileTypeIndent
     autocmd BufNewFile,BufRead *.h setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.hh setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.j2 setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.erb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
@@ -181,9 +188,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-" colorscheme Base2Tone_EveningDark
-" colorscheme Base2Tone_SeaDark
-colorscheme Base2Tone_MeadowDark
+" colorscheme Base2Tone_MeadowDark
+colorscheme hybrid
 
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
