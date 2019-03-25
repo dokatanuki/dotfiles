@@ -14,6 +14,7 @@ done
 # fish shell
 if type "fish" > /dev/null 2>&1 ; then
     # fish config files
+    mkdir -p $HOME/.config/fish
     for file in ${FISH_FILES[@]}
     do
         if [ ! -e $HOME/.config/fish/$file ] ; then
