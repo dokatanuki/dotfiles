@@ -56,6 +56,8 @@ function j
     end
 end
 
+alias tmp='nvim /tmp/hoge.md'
+
 ##########
 # PLUGIN #
 ##########
@@ -86,12 +88,16 @@ set -x GOPATH "$HOME/go"
 set -x PATH $GOPATH/bin $PATH
 
 # pyenv, pyenv-virtualenv
-set -x PYENV_ROOT "$HOME/.pyenv"
-set -x PATH "$PYENV_ROOT/bin" $PATH
-status --is-interactive; and source (pyenv init -|psub); and source (pyenv virtualenv-init -|psub)
+if test (string length (type 'pyenv' ^/dev/null)) -gt 0 ^/dev/null
+    set -x PYENV_ROOT "$HOME/.pyenv"
+    set -x PATH "$PYENV_ROOT/bin" $PATH
+    status --is-interactive; and source (pyenv init -|psub); and source (pyenv virtualenv-init -|psub)
+end
 
 # rbenv
-rbenv init - | source
+if test (string length (type 'rbenv' ^/dev/null)) -gt 0 ^/dev/null
+    rbenv init - | source
+end
 
 # direnv
 if test (string length (type 'direnv' ^/dev/null)) -gt 0 ^/dev/null

@@ -141,7 +141,8 @@ else
     set clipboard=unnamed,autoselect,unnamedplus
 endif
 set mouse=a
-
+" 画面を垂直分割する際の新規ウィンドウを右にする
+set splitright
 
 """"""""
 "  Ui  "
@@ -188,8 +189,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-" colorscheme Base2Tone_MeadowDark
-colorscheme hybrid
+colorscheme Base2Tone_LakeDark
+" colorscheme hybrid
 
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
@@ -333,6 +334,7 @@ endif
 
 " NERDTree
 nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
+let g:NERDTreeIgnore=['\.DS_Store$', '\.git$', '\.svn$', '\.clean$', '\.swp$', '\.bak$', '\.hg$', '\.hgcheck$', '\~$']
 
 " Shortcut
 " nnoremap <silent> <Leader>f :Denite file_rec<CR>
@@ -420,6 +422,10 @@ call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#var('grep', 'separator', [])
 call denite#custom#var('grep', 'default_opts',
       \ ['--nocolor', '--nogroup', '--hidden', '-S', '-g'])
+
+" quickrun
+nnoremap <silent> <Leader>p :QuickRun<CR>
+let g:quickrun_config={'*': {'split': 'vertical'}}
 
 
 """""""""""""
