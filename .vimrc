@@ -1,8 +1,16 @@
 """"""""""""""""""
+"  variables  "
+""""""""""""""""""
+let host_var = $HOME
+let python3_host_prog_var = expand('~/.pyenv/versions/3.6.4/envs/develop/bin/python')
+let ycm_server_python_interpreter_var = host_var . '/.pyenv/shims/python'
+let ycm_python_binary_path_var = host_var . '/.pyenv/shims/python'
+
+""""""""""""""""""
 "  vim-plug.vim  "
 """"""""""""""""""
 " python3 path
-let g:python3_host_prog = expand('~/.pyenv/versions/3.6.4/envs/development/bin/python')
+let g:python3_host_prog = python3_host_prog_var
 
 if has('vim_starting')
     set rtp+=~/.vim/plugged/vim-plug
@@ -20,14 +28,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'kana/vim-smartinput'
     Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line'
+    Plug 'Raimondi/delimitMate'
     Plug 'kana/vim-operator-user' | Plug 'rhysd/vim-operator-surround'
+    Plug 'bronson/vim-trailing-whitespace'
 
     " utilities
+    Plug 'Shougo/vimshell.vim'
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'scrooloose/nerdtree'
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-commentary'
     " TODO: gtagsのpython補完がうまく動かないため保留
     " それまではagで代用
     " Plug 'vim-scripts/gtags.vim'
@@ -38,22 +50,24 @@ call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'thinca/vim-quickrun'
-    " Plug 'reireias/vim-cheatsheet'
 
     " completion and linting
     Plug 'w0rp/ale'
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    Plug 'zchee/deoplete-clang'
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'Shougo/neco-vim'
-    Plug 'Shougo/neco-syntax'
-    Plug 'ujihisa/neco-look'
+    "if has('nvim')
+    "    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "else
+    "    Plug 'Shougo/deoplete.nvim'
+    "    Plug 'roxma/nvim-yarp'
+    "    Plug 'roxma/vim-hug-neovim-rpc'
+    "endif
+    "Plug 'zchee/deoplete-clang'
+    "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    "Plug 'Shougo/neco-vim'
+    "Plug 'Shougo/neco-syntax'
+    "Plug 'ujihisa/neco-look'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'ervandew/supertab'
 
     " python
     Plug 'davidhalter/jedi-vim'
@@ -329,12 +343,11 @@ augroup END
 " ag
 if executable('ag')
     let g:ag_working_path_mode="r"
-    nnoremap <Leader>s :Ag --follow --nocolor --nogroup --hidden -S 
+    nnoremap <Leader>s :Ag --follow --nocolor --nogroup --hidden -S
 endif
 
 " NERDTree
 nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
-let g:NERDTreeIgnore=['\.DS_Store$', '\.git$', '\.svn$', '\.clean$', '\.swp$', '\.bak$', '\.hg$', '\.hgcheck$', '\~$']
 
 " Shortcut
 " nnoremap <silent> <Leader>f :Denite file_rec<CR>
@@ -362,6 +375,9 @@ augroup NERDTreeAutoCommands
 augroup END
 " 隠しファイルの表示
 let NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['\.DS_Store$', '\.git$', '\.svn$', '\.clean$', '\.swp$', '\.bak$', '\.hg$', '\.hgcheck$', '\~$']
+let g:nerdtree_tabs_focus_on_files = 1
+let g:NERDTreeWinSize = 20
 
 " undotree
 let g:undotree_WindowLayout=2
@@ -409,7 +425,7 @@ augroup DeopleteAutoCommands
     autocmd CompleteDone * pclose!
 augroup END
 
-" ultisnips 
+" ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 
@@ -427,6 +443,30 @@ call denite#custom#var('grep', 'default_opts',
 nnoremap <silent> <Leader>p :QuickRun<CR>
 let g:quickrun_config={'*': {'split': 'vertical'}}
 
+" vim-trailing-whitespace
+augroup WhiteSpaceCommands
+    autocmd BufWritePre * :FixWhitespace
+augroup END
+
+" vimshell
+nnoremap <Leader>sh :vertical terminal<CR>
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_prompt = '$ '
+
+" youcompleteme
+let g:ycm_server_python_interpreter = ycm_server_python_interpreter_var
+let g:ycm_python_binary_path = ycm_python_binary_path_var
+let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:make = 'gmake'
+if exists('make')
+  let g:make = 'make'
+endif
 
 """""""""""""
 " filetype  "
@@ -447,43 +487,4 @@ let g:jedi#rename_command = ""
 
 """"""""
 " MISC "
-" TODO: デフォルト補完になれてきたら削除する
-"" 入力キーの辞書
-let s:compl_key_dict = {
-      \ char2nr("\<C-l>"): "\<C-x>\<C-l>",
-      \ char2nr("\<C-n>"): "\<C-x>\<C-n>",
-      \ char2nr("\<C-p>"): "\<C-x>\<C-p>",
-      \ char2nr("\<C-k>"): "\<C-x>\<C-k>",
-      \ char2nr("\<C-t>"): "\<C-x>\<C-t>",
-      \ char2nr("\<C-i>"): "\<C-x>\<C-i>",
-      \ char2nr("\<C-]>"): "\<C-x>\<C-]>",
-      \ char2nr("\<C-f>"): "\<C-x>\<C-f>",
-      \ char2nr("\<C-d>"): "\<C-x>\<C-d>",
-      \ char2nr("\<C-v>"): "\<C-x>\<C-v>",
-      \ char2nr("\<C-u>"): "\<C-x>\<C-u>",
-      \ char2nr("\<C-o>"): "\<C-x>\<C-o>",
-      \ char2nr('s'): "\<C-x>s",
-      \ char2nr("\<C-s>"): "\<C-x>s"
-      \}
-" 表示メッセージ
-let s:hint_i_ctrl_x_msg = join([
-      \ '<C-l>: While lines',
-      \ '<C-n>: keywords in the current file',
-      \ "<C-k>: keywords in 'dictionary'",
-      \ "<C-t>: keywords in 'thesaurus'",
-      \ '<C-i>: keywords in the current and included files',
-      \ '<C-]>: tags',
-      \ '<C-f>: file names',
-      \ '<C-d>: definitions or macros',
-      \ '<C-v>: Vim command-line',
-      \ "<C-u>: User defined completion ('completefunc')",
-      \ "<C-o>: omni completion ('omnifunc')",
-      \ "s: Spelling suggestions ('spell')"
-      \], "\n")
-function! s:hint_i_ctrl_x() abort
-  echo s:hint_i_ctrl_x_msg
-  let c = getchar()
-  return get(s:compl_key_dict, c, nr2char(c))
-endfunction
-
-inoremap <expr> <C-x>  <SID>hint_i_ctrl_x()"""""""
+""""""""
