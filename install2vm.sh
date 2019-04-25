@@ -2,14 +2,18 @@
 
 # Check requirements
 if !(type "fish" > /dev/null 2>&1) ; then
-    echo "Please install fish" >&2
-    echo "e.g. sudo apt-get install fish" >&2
+    cat << EOS
+Please install fish
+e.g. sudo apt-get install fish
+EOS
     exit
 elif !(type "nvim" > /dev/null 2>&1) ; then
-    echo "Please install neovim" >&2
-    echo "e.g. sudo add-apt-repository ppa:neovim-ppa/unstable" >&2
-    echo "e.g. sudo apt-get update" >&2
-    echo "e.g. sudo apt-get install neovim" >&2
+    cat << EOS
+Please install neovim
+e.g. sudo add-apt-repository ppa:neovim-ppa/unstable
+     sudo apt-get update
+     sudo apt-get install neovim
+EOS
     exit
 fi
 
