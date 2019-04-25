@@ -4,7 +4,7 @@
 if !(type "fish" > /dev/null 2>&1) ; then
     echo "Please install fish" >&2
     exit
-else if !(type "nvim" > /dev/null 2>&1) ; then
+elif !(type "nvim" > /dev/null 2>&1) ; then
     echo "Please install neovim" >&2
     exit
 fi
