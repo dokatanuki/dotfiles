@@ -53,9 +53,7 @@ if type "fish" > /dev/null 2>&1 ; then
     done
     # Fisher
     if type "fisher" > /dev/null 2>&1 ; then
-        echo "-------------- download Fisher --------------"
         curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
-        echo "-------------- Fisher install complete! --------------"
     fi
 fi
 

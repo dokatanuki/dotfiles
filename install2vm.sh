@@ -51,6 +51,10 @@ if type "fish" > /dev/null 2>&1 ; then
             ln -sv $HOME/dotfiles/.fish/$file $HOME/.config/fish/$file
         fi
     done
+    # Fisher
+    if type "fisher" > /dev/null 2>&1 ; then
+        curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
+    fi
 fi
 
 # Neovim
