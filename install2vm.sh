@@ -15,6 +15,18 @@ e.g. sudo add-apt-repository ppa:neovim-ppa/unstable
      sudo apt-get install neovim
 EOS
     exit
+elif !(type "tmux" > /dev/null 2>&1) ; then
+    cat << EOS
+Please install tmux
+e.g. sudo apt-get install tmux
+EOS
+    exit
+elif [ ! -e $HOME/.pyenv ] ; then
+    cat << EOS
+Please install pyenv
+See README ("Install pyenv and pyenv-virtualenv" section)
+EOS
+    exit
 fi
 
 # Define config files
