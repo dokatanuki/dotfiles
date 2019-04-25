@@ -3,9 +3,13 @@
 # Check requirements
 if !(type "fish" > /dev/null 2>&1) ; then
     echo "Please install fish" >&2
+    echo "e.g. sudo apt-get install fish" >&2
     exit
 elif !(type "nvim" > /dev/null 2>&1) ; then
     echo "Please install neovim" >&2
+    echo "e.g. sudo add-apt-repository ppa:neovim-ppa/unstable" >&2
+    echo "e.g. sudo apt-get update" >&2
+    echo "e.g. sudo apt-get install neovim" >&2
     exit
 fi
 
