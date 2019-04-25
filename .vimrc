@@ -53,6 +53,7 @@ call plug#begin('~/.vim/plugged')
 
     " completion and linting
     Plug 'w0rp/ale'
+    " https://github.com/Shougo/deoplete.nvim/wiki/Completion-Sources
     if has('nvim')
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     else
@@ -60,6 +61,13 @@ call plug#begin('~/.vim/plugged')
         Plug 'roxma/nvim-yarp'
         Plug 'roxma/vim-hug-neovim-rpc'
     endif
+    " Plug 'zchee/deoplete-clang'
+    " for deoplete
+    Plug 'Shougo/neco-vim'
+    Plug 'Shougo/neco-syntax'
+    " Plug 'ujihisa/neco-look'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    " syntax files
     Plug 'sheerun/vim-polyglot'
 
     " python
@@ -408,10 +416,6 @@ let g:deoplete#enable_ignore_case = 0
 let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
 
-" deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
-
 " Let <Tab> also do completion
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
@@ -450,6 +454,7 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsEditSplit="vertical"
 
 " indentLine
 let g:indentLine_setConceal = 0
