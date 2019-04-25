@@ -1,9 +1,19 @@
 #!/bin/bash
 
+# Check requirements
+if !(type "fish" > /dev/null 2>&1) ; then
+    echo "Please install fish" >&2
+    exit
+else if !(type "nvim" > /dev/null 2>&1) ; then
+    echo "Please install neovim" >&2
+    exit
+fi
+
+# Define config files
 DOT_FILES=(".bashrc" ".vimrc" ".tmux.conf" ".agignore" ".ctags" ".direnvrc" ".latexmkrc")
 FISH_FILES=("config.fish" "fishfile")
 
-# dotfiles
+# Dotfiles
 for file in ${DOT_FILES[@]}
 do
     if [ ! -e $HOME/$file ] ; then
@@ -11,21 +21,21 @@ do
     fi
 done
 
-# fish shell
+# Fish shell
 if type "fish" > /dev/null 2>&1 ; then
-    # fish config files
+    # Fish config files
+    mkdir -p $HOME/.config/fish
     for file in ${FISH_FILES[@]}
     do
         if [ ! -e $HOME/.config/fish/$file ] ; then
             ln -sv $HOME/dotfiles/.fish/$file $HOME/.config/fish/$file
         fi
     done
-
-    # fisher
+    # Fisher
     if type "fisher" > /dev/null 2>&1 ; then
-        echo "-------------- download fisher --------------"
+        echo "-------------- download Fisher --------------"
         curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
-        echo "-------------- fisher install complete! --------------"
+        echo "-------------- Fisher install complete! --------------"
     fi
 fi
 

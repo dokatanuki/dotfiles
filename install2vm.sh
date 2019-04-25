@@ -1,9 +1,19 @@
 #!/bin/bash
 
-DOT_FILES=(".vimrc" ".agignore" ".ctags" ".tmux.conf")
+# Check requirements
+if !(type "fish" > /dev/null 2>&1) ; then
+    echo "Please install fish" >&2
+    exit
+else if !(type "nvim" > /dev/null 2>&1) ; then
+    echo "Please install neovim" >&2
+    exit
+fi
+
+# Define config files
+DOT_FILES=(".bashrc" ".vimrc" ".agignore" ".ctags" ".tmux.conf")
 FISH_FILES=("config.fish" "fishfile")
 
-# dotfiles
+# Dotfiles
 for file in ${DOT_FILES[@]}
 do
     if [ ! -e $HOME/$file ] ; then
@@ -11,9 +21,9 @@ do
     fi
 done
 
-# fish shell
+# Fish shell
 if type "fish" > /dev/null 2>&1 ; then
-    # fish config files
+    # Fish config files
     mkdir -p $HOME/.config/fish
     for file in ${FISH_FILES[@]}
     do

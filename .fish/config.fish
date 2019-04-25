@@ -3,6 +3,7 @@
 ###############
 set fish_greeting ''
 set -x LANG ja_JP.UTF-8
+set -x LC_ALL ja_JP.UTF-8
 set -x TERM xterm-256color
 set -x EDITOR vim
 set -x XDG_CONFIG_HOME ~/.config
@@ -31,23 +32,23 @@ alias ..='cd ..'
 ############
 # FUNCTION #
 ############
-# override default cd command
+# Override default cd command
 function cd
     builtin cd $argv[1]
     ls
 end
 
-# gitのbranch名取得
+# Helper function of prompt view
 function _git_branch
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
 end
 
-# 右prompt
+# Prompt view
 function fish_right_prompt
     echo (_git_branch)
 end
 
-# my change directory
+# Change directory
 function j
     z -l | awk '{ print $2 }' | fzf | read selected_dir
 
@@ -58,6 +59,7 @@ end
 
 alias tmp='nvim /tmp/hoge.md'
 
+
 ##########
 # PLUGIN #
 ##########
@@ -65,7 +67,6 @@ alias tmp='nvim /tmp/hoge.md'
 eval (mkdir -p $HOME/.z)
 set -x Z_CMD 'z'
 set -x Z_DATA "$HOME/.z/.z"
-
 
 
 #################
@@ -116,8 +117,5 @@ set -x FZF_DEFAULT_OPTS '--height 40% --reverse --border'
 # gcc, g++, ccache
 set -x CFLAGS '-Wno-error'
 set -x CXXFLAGS '-Wno-error'
-
-# imagemagick path for rails
-set -x PATH /usr/local/opt/imagemagick@6/bin $PATH
 
 # tmux: bashから起動, tmuxのデフォルトシェルをfishにしてある

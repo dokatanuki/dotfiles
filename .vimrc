@@ -6,6 +6,7 @@ let python3_host_prog_var = expand('~/.pyenv/versions/3.6.4/envs/develop/bin/pyt
 let ycm_server_python_interpreter_var = host_var . '/.pyenv/shims/python'
 let ycm_python_binary_path_var = host_var . '/.pyenv/shims/python'
 
+
 """"""""""""""""""
 "  vim-plug.vim  "
 """"""""""""""""""
@@ -159,6 +160,7 @@ endif
 set mouse=a
 " 画面を垂直分割する際の新規ウィンドウを右にする
 set splitright
+
 
 """"""""
 "  Ui  "
@@ -478,6 +480,7 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
 " indentLine
 let g:indentLine_setConceal = 0
 
+
 """""""""""""
 " filetype  "
 """""""""""""
@@ -498,5 +501,5 @@ let g:jedi#rename_command = ""
 """"""""
 " MISC "
 """"""""
-" To show `
+" To show
 let g:vim_markdown_conceal = 0
