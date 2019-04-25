@@ -1,9 +1,16 @@
 """"""""""""""""""
+"  variables  "
+""""""""""""""""""
+let host_var = $HOME
+let python3_host_prog_var = expand('~/.pyenv/versions/3.6.4/envs/develop/bin/python')
+let ycm_server_python_interpreter_var = host_var . '/.pyenv/shims/python'
+let ycm_python_binary_path_var = host_var . '/.pyenv/shims/python'
+
+""""""""""""""""""
 "  vim-plug.vim  "
 """"""""""""""""""
 " python3 path
-let g:python3_host_prog = expand('~/.pyenv/versions/3.6.4/envs/development/bin/python')
-
+let g:python3_host_prog = python3_host_prog_var
 
 if has('vim_starting')
     set rtp+=~/.vim/plugged/vim-plug
@@ -21,13 +28,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'kana/vim-smartinput'
     Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line'
+    Plug 'Raimondi/delimitMate'
     Plug 'kana/vim-operator-user' | Plug 'rhysd/vim-operator-surround'
+    Plug 'bronson/vim-trailing-whitespace'
 
     " utilities
+    Plug 'Shougo/vimshell.vim'
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'scrooloose/nerdtree'
+    Plug 'jistr/vim-nerdtree-tabs'
     Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+    Plug 'tpope/vim-commentary'
     " TODO: gtagsのpython補完がうまく動かないため保留
     " それまではagで代用
     " Plug 'vim-scripts/gtags.vim'
@@ -35,28 +47,42 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'rking/ag.vim'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'thinca/vim-quickrun'
+    Plug 'majutsushi/tagbar'
 
     " completion and linting
     Plug 'w0rp/ale'
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    Plug 'zchee/deoplete-clang'
+    "if has('nvim')
+    "    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "else
+    "    Plug 'Shougo/deoplete.nvim'
+    "    Plug 'roxma/nvim-yarp'
+    "    Plug 'roxma/vim-hug-neovim-rpc'
+    "endif
+    "Plug 'zchee/deoplete-clang'
+    "Plug 'Shougo/neco-vim'
+    "Plug 'Shougo/neco-syntax'
+    "Plug 'ujihisa/neco-look'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'ervandew/supertab'
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'Shougo/neco-vim'
-    Plug 'Shougo/neco-syntax'
-    Plug 'ujihisa/neco-look'
 
     " python
     Plug 'davidhalter/jedi-vim'
 
+    " terraform
+    Plug 'hashivim/vim-terraform'
+
+    " plantuml
+    Plug 'aklt/plantuml-syntax'
+
     " colorschemes
     Plug 'jonathanfilip/vim-lucius'
     Plug 'w0ng/vim-hybrid'
+    Plug 'atelierbram/Base2Tone-vim'
 
     " filetype
 call plug#end()
@@ -82,16 +108,38 @@ filetype plugin indent on
 """""""""""""
 set encoding=utf-8
 set fileformats=unix,dos,mac
-set autoindent
-set smartindent
-set shiftwidth=2
 set autoread
 set noerrorbells
 set nostartofline
-set tabstop=2
-set softtabstop=2
+" 画面上で表示する1つのタブの幅
+set tabstop=4
+" いくつの連続した空白を1回で削除できるようにするか
+set softtabstop=4
+" 自動インデントでのインデントの長さ
+set shiftwidth=4
+" tabキーを押すとスペースが入力される
 set expandtab
-set smarttab
+" 改行した時に自動でインデントする
+set autoindent
+" {があると次の行は自動で1段深く自動インデントしてくれる
+set smartindent
+
+" filetypeに応じたインデント設定
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.cc setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.h setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.hh setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.j2 setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.erb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
 " スクロール開始位置
 set scrolloff=15
 " 補完マップの長さ
@@ -109,7 +157,8 @@ else
     set clipboard=unnamed,autoselect,unnamedplus
 endif
 set mouse=a
-
+" 画面を垂直分割する際の新規ウィンドウを右にする
+set splitright
 
 """"""""
 "  Ui  "
@@ -131,6 +180,7 @@ set display=lastline
 set wildmenu
 set wildmode=list:full
 set wildignore=*.o,*.obj,*.pyc,*.so,*.dll
+set conceallevel=0
 
 " show whitespace errors
 hi link WhitespaceError Error
@@ -144,6 +194,10 @@ au vimrc Syntax * syn match WhitespaceError /\s\+$\| \+\ze\t/
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
     set termguicolors
+    if has('nvim')
+    " https://github.com/neovim/neovim/wiki/FAQ
+    set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+    endif
 endif
 
 " For Neovim 0.1.3 and 0.1.4
@@ -152,7 +206,25 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme lucius
+colorscheme Base2Tone_LakeDark
+" colorscheme hybrid
+
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+highlight Folded ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
+augroup TransparentBG
+    autocmd!
+    autocmd Colorscheme * highlight Normal ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight NonText ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight LineNr ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight Folded ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight SpecialKey ctermbg=NONE guibg=NONE
+    autocmd Colorscheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+augroup END
 
 
 """"""""""""
@@ -205,6 +277,9 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+nnoremap db dT
+" nnoremap db dTの影響で発生するddのラグをなくす
+nnoremap dd dd
 noremap <S-j> }
 noremap <S-k> {
 noremap ; :
@@ -220,6 +295,9 @@ noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
+nnoremap sn gt
+nnoremap sp gT
+nnoremap st :<C-u>tabnew<CR>
 
 " toggles
 nnoremap <silent> <Leader>tf :NERDTreeToggle<CR>
@@ -268,8 +346,11 @@ augroup END
 " ag
 if executable('ag')
     let g:ag_working_path_mode="r"
-    nnoremap <Leader>g :Ag --follow --nocolor --nogroup --hidden -S 
+    nnoremap <Leader>ag :Ag --follow --nocolor --nogroup --hidden -S
 endif
+
+" tagbar
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " NERDTree
 nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
@@ -277,7 +358,7 @@ nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
 " Shortcut
 " nnoremap <silent> <Leader>f :Denite file_rec<CR>
 nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>g :GFiles?<CR>
 
 
 """"""""""""""""""
@@ -299,6 +380,9 @@ augroup NERDTreeAutoCommands
 augroup END
 " 隠しファイルの表示
 let NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['\.DS_Store$', '\.git$', '\.svn$', '\.clean$', '\.swp$', '\.bak$', '\.hg$', '\.hgcheck$', '\~$']
+let g:nerdtree_tabs_focus_on_files = 1
+let g:NERDTreeWinSize = 20
 
 " undotree
 let g:undotree_WindowLayout=2
@@ -315,10 +399,12 @@ let g:fzf_tags_command = 'ctags -R'
 " ale
 let g:ale_lint_on_enter = 0
 "\   'python': ['autopep8', 'isort'],
+"\   'c': ['clang-format'],
+"\   'cpp': ['clang-format'],
 let g:ale_fixers = {
 \   'python': [],
-\   'c': ['clang-format'],
-\   'cpp': ['clang-format'],
+\   'c': [],
+\   'cpp': [],
 \}
 let g:ale_fix_on_save = 1
 
@@ -344,10 +430,6 @@ augroup DeopleteAutoCommands
     autocmd CompleteDone * pclose!
 augroup END
 
-" ultisnips 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
-
 " denite
 call denite#custom#var('file_rec', 'command',
       \ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-S', '-g', ''])
@@ -358,6 +440,43 @@ call denite#custom#var('grep', 'separator', [])
 call denite#custom#var('grep', 'default_opts',
       \ ['--nocolor', '--nogroup', '--hidden', '-S', '-g'])
 
+" quickrun
+nnoremap <silent> <Leader>p :QuickRun<CR>
+let g:quickrun_config={'*': {'split': 'vertical'}}
+
+" vim-trailing-whitespace
+augroup WhiteSpaceCommands
+    autocmd BufWritePre * :FixWhitespace
+augroup END
+
+" vimshell
+nnoremap <Leader>sh :vertical terminal<CR>
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_prompt = '$ '
+
+" youcompleteme
+let g:ycm_server_python_interpreter = ycm_server_python_interpreter_var
+let g:ycm_python_binary_path = ycm_python_binary_path_var
+let g:ycm_auto_trigger = 1
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:make = 'gmake'
+if exists('make')
+  let g:make = 'make'
+endif
+
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+
+" indentLine
+let g:indentLine_setConceal = 0
 
 """""""""""""
 " filetype  "
@@ -378,43 +497,6 @@ let g:jedi#rename_command = ""
 
 """"""""
 " MISC "
-" TODO: デフォルト補完になれてきたら削除する
-"" 入力キーの辞書
-let s:compl_key_dict = {
-      \ char2nr("\<C-l>"): "\<C-x>\<C-l>",
-      \ char2nr("\<C-n>"): "\<C-x>\<C-n>",
-      \ char2nr("\<C-p>"): "\<C-x>\<C-p>",
-      \ char2nr("\<C-k>"): "\<C-x>\<C-k>",
-      \ char2nr("\<C-t>"): "\<C-x>\<C-t>",
-      \ char2nr("\<C-i>"): "\<C-x>\<C-i>",
-      \ char2nr("\<C-]>"): "\<C-x>\<C-]>",
-      \ char2nr("\<C-f>"): "\<C-x>\<C-f>",
-      \ char2nr("\<C-d>"): "\<C-x>\<C-d>",
-      \ char2nr("\<C-v>"): "\<C-x>\<C-v>",
-      \ char2nr("\<C-u>"): "\<C-x>\<C-u>",
-      \ char2nr("\<C-o>"): "\<C-x>\<C-o>",
-      \ char2nr('s'): "\<C-x>s",
-      \ char2nr("\<C-s>"): "\<C-x>s"
-      \}
-" 表示メッセージ
-let s:hint_i_ctrl_x_msg = join([
-      \ '<C-l>: While lines',
-      \ '<C-n>: keywords in the current file',
-      \ "<C-k>: keywords in 'dictionary'",
-      \ "<C-t>: keywords in 'thesaurus'",
-      \ '<C-i>: keywords in the current and included files',
-      \ '<C-]>: tags',
-      \ '<C-f>: file names',
-      \ '<C-d>: definitions or macros',
-      \ '<C-v>: Vim command-line',
-      \ "<C-u>: User defined completion ('completefunc')",
-      \ "<C-o>: omni completion ('omnifunc')",
-      \ "s: Spelling suggestions ('spell')"
-      \], "\n")
-function! s:hint_i_ctrl_x() abort
-  echo s:hint_i_ctrl_x_msg
-  let c = getchar()
-  return get(s:compl_key_dict, c, nr2char(c))
-endfunction
-
-inoremap <expr> <C-x>  <SID>hint_i_ctrl_x()"""""""
+""""""""
+" To show `
+let g:vim_markdown_conceal = 0

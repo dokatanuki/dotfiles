@@ -3,6 +3,7 @@
 #  Environment Variables  #
 ###########################
 export LANG=ja_JP.UTF-8
+export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 ## 重複パスを登録しない
 typeset -U path cdpath fpath manpath
@@ -58,7 +59,6 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 # 存在しないディレクトリにアクセスしようとした際にルートに移動する
 setopt cdable_vars
-
 
 
 ############
@@ -133,20 +133,20 @@ fi
 # tool #
 ########
 # pyenv, pyenv-virtualenv
-export PYENV_ROOT="$HOME/.pyenv"
-path=(
-	$PYENV_ROOT/bin
-	$path
-	$HOME/bin
-)
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-# nodejs
-export PATH=$PATH:$HOME/.nodebrew/current/bin
+if [ -e $HOME/.pyenv ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    path=(
+        $PYENV_ROOT/bin
+        $path
+    )
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # direnv
+if type "direnv" > /dev/null 2>&1; then
 eval "$(direnv hook zsh)"
+fi
 
 # neovim
 if type "nvim" > /dev/null 2>&1; then
@@ -157,9 +157,9 @@ fi
 export XDG_CONFIG_HOME=~/.config
 
 # tmux
-if type "tmux" > /dev/null 2>&1 ; then
-	[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
-fi
+# if type "tmux" > /dev/null 2>&1 ; then
+# 	[[ -z "$TMUX" && ! -z "$PS1" ]] && exec tmux
+# fi
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -173,7 +173,7 @@ path=(
 
 
 ######
-# os # 
+# os #
 ######
 case ${OSTYPE} in
     darwin*)
@@ -210,10 +210,7 @@ setopt extended_glob
 #########
 # install
 if [ ! -e $HOME/.zplug ] ; then
-    printf "Install zplug? [y/N]: "
-    if read -q; then
-        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-    fi
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 fi
 
 # initialize
@@ -239,3 +236,10 @@ fi
 
 # load plugin
 zplug load
+
+
+###########
+# enhancd #
+###########
+export ENHANCD_DISABLE_HOME=1
+alias j="cd -"
