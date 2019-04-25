@@ -8,7 +8,7 @@ set -x EDITOR vim
 set -x XDG_CONFIG_HOME ~/.config
 
 ## vi mode
-function fish_mode_prompt 
+function fish_mode_prompt
 end
 fish_vi_key_bindings
 
@@ -81,6 +81,11 @@ end
 if test (string length (type 'nvim' ^/dev/null)) -gt 0 ^/dev/null
     set -x EDITOR nvim
     alias vim='nvim'
+end
+
+# Haskell
+if test (string length (type 'stack' ^/dev/null)) -gt 0 ^/dev/null
+    alias haskell='stack '
 end
 
 # Go

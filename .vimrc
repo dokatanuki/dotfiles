@@ -50,6 +50,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'thinca/vim-quickrun'
+    Plug 'majutsushi/tagbar'
 
     " completion and linting
     Plug 'w0rp/ale'
@@ -61,13 +62,13 @@ call plug#begin('~/.vim/plugged')
     "    Plug 'roxma/vim-hug-neovim-rpc'
     "endif
     "Plug 'zchee/deoplete-clang'
-    "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     "Plug 'Shougo/neco-vim'
     "Plug 'Shougo/neco-syntax'
     "Plug 'ujihisa/neco-look'
     Plug 'sheerun/vim-polyglot'
     Plug 'Valloric/YouCompleteMe'
     Plug 'ervandew/supertab'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
     " python
     Plug 'davidhalter/jedi-vim'
@@ -136,6 +137,7 @@ augroup fileTypeIndent
     autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.j2 setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.erb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.hs setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " スクロール開始位置
@@ -178,6 +180,7 @@ set display=lastline
 set wildmenu
 set wildmode=list:full
 set wildignore=*.o,*.obj,*.pyc,*.so,*.dll
+set conceallevel=0
 
 " show whitespace errors
 hi link WhitespaceError Error
@@ -343,8 +346,11 @@ augroup END
 " ag
 if executable('ag')
     let g:ag_working_path_mode="r"
-    nnoremap <Leader>s :Ag --follow --nocolor --nogroup --hidden -S
+    nnoremap <Leader>ag :Ag --follow --nocolor --nogroup --hidden -S
 endif
+
+" tagbar
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " NERDTree
 nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
@@ -353,7 +359,6 @@ nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
 " nnoremap <silent> <Leader>f :Denite file_rec<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>g :GFiles?<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
 
 
 """"""""""""""""""
@@ -425,10 +430,6 @@ augroup DeopleteAutoCommands
     autocmd CompleteDone * pclose!
 augroup END
 
-" ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
-
 " denite
 call denite#custom#var('file_rec', 'command',
       \ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-S', '-g', ''])
@@ -459,14 +460,23 @@ let g:ycm_python_binary_path = ycm_python_binary_path_var
 let g:ycm_auto_trigger = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:make = 'gmake'
 if exists('make')
   let g:make = 'make'
 endif
+
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+
+" indentLine
+let g:indentLine_setConceal = 0
 
 """""""""""""
 " filetype  "
@@ -488,3 +498,5 @@ let g:jedi#rename_command = ""
 """"""""
 " MISC "
 """"""""
+" To show `
+let g:vim_markdown_conceal = 0
