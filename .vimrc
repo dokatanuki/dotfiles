@@ -32,7 +32,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'bronson/vim-trailing-whitespace'
 
     " utilities
-    Plug 'Shougo/vimshell.vim'
+    " Plug 'Shougo/vimshell.vim'
+    Plug 'Shougo/deol.nvim'
     Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'scrooloose/nerdtree'
     Plug 'jistr/vim-nerdtree-tabs'
@@ -289,6 +290,11 @@ inoremap jj <ESC>
 inoremap <silent> <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
 inoremap <silent> <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-x>\<C-o>"
 
+tnoremap <S-l> $
+tnoremap <S-h> ^
+tnoremap jj <ESC>
+tnoremap tt <C-\><C-n>
+
 " tab
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
@@ -444,10 +450,9 @@ augroup WhiteSpaceCommands
     autocmd BufWritePre * :FixWhitespace
 augroup END
 
-" vimshell
-nnoremap <Leader>sh :vertical terminal<CR>
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_prompt = '$ '
+" Deol
+nnoremap <silent> <Leader>sh :tabnew<bar>:Deol<CR>
+let g:deol#prompt_pattern = '$ '
 
 " ultisnips
 let g:UltiSnipsExpandTrigger = "<tab>"
