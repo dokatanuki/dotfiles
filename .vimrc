@@ -206,7 +206,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme Base2Tone_LakeDark
+colorscheme Base2Tone_MeadowDark
 " colorscheme hybrid
 
 highlight Normal ctermbg=NONE guibg=NONE
