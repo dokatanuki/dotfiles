@@ -94,7 +94,7 @@ set -x GOPATH "$HOME/go"
 set -x PATH $GOPATH/bin $PATH
 
 # pyenv, pyenv-virtualenv
-if test (string length (type 'pyenv' ^/dev/null)) -gt 0 ^/dev/null
+if test -d 'pyenv'
     set -x PYENV_ROOT "$HOME/.pyenv"
     set -x PATH "$PYENV_ROOT/bin" $PATH
     status --is-interactive; and source (pyenv init -|psub); and source (pyenv virtualenv-init -|psub)
