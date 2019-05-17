@@ -42,3 +42,8 @@ xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 $ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 $ git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 ```
+
+### `Fix error: -bash: warning: setlocale: LC_ALL: cannot change locale (ja_JP.UTF-8)`
+```sh
+$ localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+```
