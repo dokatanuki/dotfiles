@@ -464,6 +464,10 @@ let g:UltiSnipsEditSplit="vertical"
 " indentLine
 let g:indentLine_setConceal = 0
 
+" tagbar
+let g:tagbar_width = 30
+let g:tagbar_autoshowtag = 1
+set statusline=%F%m%r%h%w\%=%{tagbar#currenttag('[%s]','')}\[Pos=%v,%l]\[Len=%L]
 
 """""""""""""
 " filetype  "
