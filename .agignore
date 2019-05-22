@@ -7,8 +7,6 @@ old
 .vim
 .git
 .svn
-lib
-libs
 jquery-*.js
 bootstrap*.css
 bootstrap*.js
