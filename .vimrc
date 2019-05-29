@@ -30,6 +30,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'Raimondi/delimitMate'
     Plug 'kana/vim-operator-user' | Plug 'rhysd/vim-operator-surround'
     Plug 'bronson/vim-trailing-whitespace'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'osyo-manga/vim-over'
 
     " utilities
     " Plug 'Shougo/vimshell.vim'
@@ -351,7 +353,7 @@ augroup END
 " ag
 if executable('ag')
     let g:ag_working_path_mode="r"
-    nnoremap <Leader>ag :Ag --follow --nocolor --nogroup --hidden -S
+    nnoremap <Leader>ag :Ag --follow --nocolor --nogroup --hidden -S ""<Left>
 endif
 
 " tagbar
@@ -407,7 +409,7 @@ let g:ale_lint_on_enter = 0
 "\   'c': ['clang-format'],
 "\   'cpp': ['clang-format'],
 let g:ale_fixers = {
-\   'python': [],
+\   'python': ['autopep8', 'isort'],
 \   'c': [],
 \   'cpp': [],
 \}
@@ -468,6 +470,15 @@ let g:indentLine_setConceal = 0
 let g:tagbar_width = 30
 let g:tagbar_autoshowtag = 1
 set statusline=%F%m%r%h%w\%=%{tagbar#currenttag('[%s]','')}\[Pos=%v,%l]\[Len=%L]
+
+" easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" over
+nnoremap <silent> <Leader>m :OverCommandLine<CR>
+" カーソル下の単語をハイライト付きで置換
+nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 
 """""""""""""
 " filetype  "
