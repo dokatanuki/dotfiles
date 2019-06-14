@@ -36,7 +36,7 @@ call plug#begin('~/.vim/plugged')
     " utilities
     " Plug 'Shougo/vimshell.vim'
     Plug 'Shougo/deol.nvim'
-    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' } | Plug 'Shougo/neomru.vim'
     Plug 'scrooloose/nerdtree'
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
@@ -48,6 +48,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'machakann/vim-highlightedyank'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    " ag.vim is already deprecated so use mileszs/ack.vim
     Plug 'rking/ag.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
@@ -366,6 +367,9 @@ nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
 " nnoremap <silent> <Leader>f :Denite file_rec<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>g :GFiles?<CR>
+nnoremap <silent> <Leader>c :Denite -cursor-wrap=true file_mru<CR>
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
 
 """"""""""""""""""
