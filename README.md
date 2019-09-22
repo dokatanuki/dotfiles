@@ -47,3 +47,16 @@ $ git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv
 ```sh
 $ localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
 ```
+
+### git
+#### `git clone`
+```sh
+$ git clone git@xxxxxx:dokatanuki/dotfiles.git
+```
+xxxxxx is a Host in .ssh/config (e.g. github-dokatanuki)
+
+#### `git config`
+```sh
+$ git config --local user.name "dokatanuki"
+$ git config --local user.email dokatanuki@gmail.com
+```
