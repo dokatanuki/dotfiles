@@ -34,7 +34,7 @@ $ bash install.sh
 ---
 
 ### Note
-### `Install pyenv and pyenv-virtualenv`
+### Install pyenv and pyenv-virtualenv
 ```sh
 $ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
@@ -43,7 +43,7 @@ $ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 $ git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 ```
 
-### `Fix error: -bash: warning: setlocale: LC_ALL: cannot change locale (ja_JP.UTF-8)`
+### Fix error: -bash: warning: setlocale: LC_ALL: cannot change locale (ja_JP.UTF-8)
 ```sh
 $ localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
 ```
@@ -59,4 +59,11 @@ xxxxxx is a Host in .ssh/config (e.g. github-dokatanuki)
 ```sh
 $ git config --local user.name "dokatanuki"
 $ git config --local user.email dokatanuki@gmail.com
+```
+
+### fish
+```sh
+$ sudo apt-add-repository ppa:fish-shell/release-3
+$ sudo apt-get update
+$ sudo apt-get install fish
 ```
