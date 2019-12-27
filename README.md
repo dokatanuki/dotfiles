@@ -7,13 +7,13 @@ Dotfiles for my personal use.
 ### Caution
 Assume that your default shell is bash.
 bash will automatically execute tmux(tmux's default shell is fish, see `.tmux.conf`) and exit.
-This makes it possible that default shell is bash but run fish like a default shell.
+This makes it possible that default shell is bash but run zsh like a default shell.
 
 ### Requirement
 ### `Required`
 - Neovim
 - pyenv(python3 and 'neovim' module)
-- fish shell
+- zsh
 - tmux
 ### `Optional`
 - ag
@@ -28,7 +28,7 @@ This makes it possible that default shell is bash but run fish like a default sh
 $ cd ~
 $ git clone https://github.com/dokatanuki/dotfiles.git
 $ cd dotfiles
-$ bash install.sh
+$ ./install.sh
 ```
 
 ---
@@ -59,11 +59,4 @@ xxxxxx is a Host in .ssh/config (e.g. github-dokatanuki)
 ```sh
 $ git config --local user.name "dokatanuki"
 $ git config --local user.email dokatanuki@gmail.com
-```
-
-### fish
-```sh
-$ sudo apt-add-repository ppa:fish-shell/release-3
-$ sudo apt-get update
-$ sudo apt-get install fish
 ```
