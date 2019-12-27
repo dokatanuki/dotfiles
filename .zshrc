@@ -110,9 +110,9 @@ if [ -e $HOME/.pyenv ]; then
 fi
 
 # rbenv
-if type "rbenv" > /dev/null 2>&1; then
-    rbenv init - | source
-fi
+# if type "rbenv" > /dev/null 2>&1; then
+#     rbenv init - | source
+# fi
 
 # direnv
 if type "direnv" > /dev/null 2>&1; then
