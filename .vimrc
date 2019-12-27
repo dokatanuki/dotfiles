@@ -42,9 +42,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
     Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-commentary'
-    " TODO: gtagsのpython補完がうまく動かないため保留
-    " それまではagで代用
-    " Plug 'vim-scripts/gtags.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
@@ -56,29 +53,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'majutsushi/tagbar'
 
     " completion and linting
-    Plug 'w0rp/ale'
-    " https://github.com/Shougo/deoplete.nvim/wiki/Completion-Sources
-    if has('nvim')
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-        Plug 'Shougo/deoplete.nvim'
-        Plug 'roxma/nvim-yarp'
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    " Plug 'zchee/deoplete-clang'
-    " for deoplete
-    Plug 'Shougo/neco-vim'
-    Plug 'Shougo/neco-syntax'
-    " Plug 'ujihisa/neco-look'
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    " syntax files
-    Plug 'sheerun/vim-polyglot'
-
-    " python
-    Plug 'davidhalter/jedi-vim'
-
-    " terraform
-    Plug 'hashivim/vim-terraform'
+    Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
     " plantuml
     Plug 'aklt/plantuml-syntax'
@@ -329,15 +304,6 @@ nnoremap tl :ts<CR>
 " tag をインクリメンタルに検索
 nnoremap ts :Tags <C-r>=expand("")<CR><CR>
 
-" gtags: pythonの補完がうまくいかないため，さしあたってagで代用
-" 定義を探す
-" nnoremap gj :GtagsCursor<CR>
-" 参照を探す
-" nnoremap gk :Gtags -r <C-r><C-w><CR>
-" 戻る
-" nnoremap gn :cn<CR>
-" nnoremap gp :cp<CR>
-
 " quickfix
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
@@ -407,35 +373,8 @@ endif
 " fzf
 let g:fzf_tags_command = 'ctags -R'
 
-" ale
-let g:ale_lint_on_enter = 0
-"\   'python': ['autopep8', 'isort'],
-"\   'c': ['clang-format'],
-"\   'cpp': ['clang-format'],
-let g:ale_fixers = {
-\   'python': ['autopep8', 'isort'],
-\   'c': [],
-\   'cpp': [],
-\}
-let g:ale_fix_on_save = 1
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#auto_complete_start_length = 2
-let g:deoplete#enable_camel_case = 0
-let g:deoplete#enable_ignore_case = 0
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_smart_case = 1
-
 " Let <Tab> also do completion
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-"close the preview window after completion is done.
-augroup DeopleteAutoCommands
-    autocmd!
-    autocmd CompleteDone * pclose!
-augroup END
 
 " denite
 call denite#custom#var('file_rec', 'command',
@@ -484,22 +423,13 @@ nnoremap <silent> <Leader>m :OverCommandLine<CR>
 " カーソル下の単語をハイライト付きで置換
 nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 
+" coc
+" use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
 """""""""""""
 " filetype  "
 """""""""""""
-" jedi-vim
-augroup PythonAutoCommands
-    autocmd!
-    autocmd FileType python setlocal completeopt-=preview
-augroup END
-let g:jedi#goto_command = ""
-let g:jedi#goto_assignments_command = ""
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = ""
-let g:jedi#usages_command = ""
-let g:jedi#completions_command = ""
-let g:jedi#rename_command = ""
-
 
 """"""""
 " MISC "
