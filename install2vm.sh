@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Check requirements
-if !(type "fish" > /dev/null 2>&1) ; then
+if !(type "zsh" > /dev/null 2>&1) ; then
     cat << EOS
-Please install fish
-e.g. sudo apt-get install fish
+Please install zsh 
+e.g. sudo apt-get install zsh
 EOS
     exit
 elif !(type "nvim" > /dev/null 2>&1) ; then
@@ -30,8 +30,7 @@ EOS
 fi
 
 # Define config files
-DOT_FILES=(".bashrc" ".vimrc" ".agignore" ".ctags" ".tmux.conf")
-FISH_FILES=("config.fish" "fishfile")
+DOT_FILES=(".zshrc" ".vimrc" ".agignore" ".ctags" ".tmux.conf")
 
 # Dotfiles
 for file in ${DOT_FILES[@]}
@@ -40,22 +39,6 @@ do
         ln -sv $HOME/dotfiles/$file $HOME/$file
     fi
 done
-
-# Fish shell
-if type "fish" > /dev/null 2>&1 ; then
-    # Fish config files
-    mkdir -p $HOME/.config/fish
-    for file in ${FISH_FILES[@]}
-    do
-        if [ ! -e $HOME/.config/fish/$file ] ; then
-            ln -sv $HOME/dotfiles/.fish/$file $HOME/.config/fish/$file
-        fi
-    done
-    # Fisher
-    if type "fisher" > /dev/null 2>&1 ; then
-        curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisherman
-    fi
-fi
 
 # Neovim
 if type "nvim" > /dev/null 2>&1 ; then
