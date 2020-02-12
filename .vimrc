@@ -53,6 +53,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'majutsushi/tagbar'
 
     " completion and linting
+    Plug 'SirVer/ultisnips'
+    " Snippets are separated from the engine. Add this if you want them:
+    Plug 'honza/vim-snippets'
     Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
     " plantuml
