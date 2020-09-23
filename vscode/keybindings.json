@@ -1,0 +1,44 @@
+[
+    //----------------------------------------------------------
+    // エディタにフォーカスしている時の設定(editor<->sidebarへの移動)
+    //----------------------------------------------------------
+    // サイドバーへの移動
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusSideBar",
+        "when": "editorFocus"
+    },
+    // サイドバーの移動
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.nextSideBarView",
+        "when": "!editorFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.previousSideBarView",
+        "when": "!editorFocus"
+    },
+    // サイドバーからの移動
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusFirstEditorGroup",
+        "when": "!editorFocus"
+    },
+    // サイドバーからの移動
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateEditorGroups",
+        "when": "!editorFocus"
+    },
+
+    //----------------------------------------------------------
+    // サジェストの選択
+    //----------------------------------------------------------
+    // サジェストのキャンセル
+    {
+        "key": "ctrl+[",
+        "command": "workbench.action.closeQuickOpen",
+        "when": "inQuickOpen"
+    },
+]

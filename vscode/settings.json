@@ -1,0 +1,205 @@
+{
+    // MEMO
+    // Code > Preferences > Keyboard Shortcuts
+
+    // COMMON
+    "editor.renderControlCharacters": true, // 制御文字を表示する
+    "editor.renderWhitespace": "boundary", // 空白文字を表示する
+    "editor.renderLineHighlight": "all", // カーソル行を強調する
+    "editor.cursorBlinking": "phase", // カーソルを点滅させる
+    "editor.minimap.enabled": false, // ミニマップを表示しない
+    "editor.fontSize": 14, // フォントサイズ
+    "editor.cursorSurroundingLines": 9, // スクロールを開始する行数
+
+    "workbench.startupEditor": "none", // 起動時に Dashborad を表示しないようにする
+    "workbench.activityBar.visible": false, // 一番左のメニューバーを非表示
+
+    "window.restoreFullscreen": true, // 全画面を保持
+
+    "search.exclude": { // 検索対象外のファイル
+        "**/tags": true,
+    },
+
+    // EXTENSION: VIM
+    "vim.useSystemClipboard": true, // システムのクリップボードと同期
+    "vim.useCtrlKeys": true,
+    "vim.highlightedyank.enable": true, // yank した箇所をハイライト
+    "vim.highlightedyank.duration" : 700, // yank した箇所をハイライトする時間
+    "vim.leader": "<space>",
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j","j"],
+            "after": ["<Esc>"]
+        }
+    ],
+
+    // ノーマルモードでのキーバインド
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [";"],
+            "after": [":"]
+        },
+        {
+            "before": [":"],
+            "after": [";"]
+        },
+        {
+            "before": ["H"],
+            "after": ["^"]
+        },
+        {
+            "before": ["L"],
+            "after": ["$"]
+        },
+        {
+            "before": ["J"],
+            "after": ["}"]
+        },
+        {
+            "before": ["K"],
+            "after": ["{"]
+        },
+        {
+            "before": ["leader", "f"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.quickOpen",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "g"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.findInFiles",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.startFindReplaceAction",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["s", "n"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.nextEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["s", "p"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.previousEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["s", "t"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.newUntitledFile",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["t", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.gotoSymbol",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["t", "j"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.revealDefinition",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["t", "b"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.navigateBack",
+                    "args": []
+                }
+            ]
+        },
+    ],
+
+    // 例: d を押した後の挙動制御
+    "vim.operatorPendingModeKeyBindings": [
+        {
+            "before": ["L"],
+            "after": ["$"]
+        },
+        {
+            "before": ["H"],
+            "after": ["^"]
+        },
+        {
+            "before": ["J"],
+            "after": ["}"]
+        },
+        {
+            "before": ["K"],
+            "after": ["{"]
+        },
+    ],
+
+    "vim.visualModeKeyBindings": [
+        {
+            "before": ["L"],
+            "after": ["$"]
+        },
+        {
+            "before": ["H"],
+            "after": ["^"]
+        },
+        {
+            "before": ["J"],
+            "after": ["}"]
+        },
+        {
+            "before": ["K"],
+            "after": ["{"]
+        },
+    ],
+
+    // EXTENSION: Github Theme
+    "workbench.colorTheme": "GitHub Dark",
+
+    // EXTENSION: Material Icon Theme
+    "workbench.iconTheme": "material-icon-theme",
+
+    // EXTENSION: Trailing Spaces
+    "trailing-spaces.trimOnSave": true,
+
+    // EXTENSION: Todo Tree
+    "todo-tree.tree.showScanModeButton": false,
+}
