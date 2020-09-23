@@ -191,8 +191,8 @@
         },
     ],
 
-    // EXTENSION: Github Theme
-    "workbench.colorTheme": "GitHub Dark",
+    // EXTENSION: Aurora X
+    "workbench.colorTheme": "Aurora X",
 
     // EXTENSION: Material Icon Theme
     "workbench.iconTheme": "material-icon-theme",

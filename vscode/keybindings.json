@@ -1,12 +1,23 @@
 [
     //----------------------------------------------------------
-    // エディタにフォーカスしている時の設定(editor<->sidebarへの移動)
+    // エディタにフォーカスしている時の設定(editor<->sidebar/terminalへの移動)
     //----------------------------------------------------------
     // サイドバーへの移動
     {
         "key": "ctrl+h",
         "command": "workbench.action.focusSideBar",
         "when": "editorFocus"
+    },
+    // ターミナルのトグル
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "editorFocus || terminalFocus"
+    },
+    // サイドバーのトグル
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.toggleSidebarVisibility",
     },
     // サイドバーの移動
     {
@@ -35,10 +46,16 @@
     //----------------------------------------------------------
     // サジェストの選択
     //----------------------------------------------------------
-    // サジェストのキャンセル
+    // ファイル検索のキャンセル
     {
         "key": "ctrl+[",
         "command": "workbench.action.closeQuickOpen",
         "when": "inQuickOpen"
     },
+    // 参照元ペーンを閉じる
+    {
+        "key": "ctrl+[",
+        "command": "closeReferenceSearch",
+        "when": "referenceSearchVisible && !config.editor.stablePeek"
+    }
 ]
