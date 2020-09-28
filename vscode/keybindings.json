@@ -57,5 +57,11 @@
         "key": "ctrl+[",
         "command": "closeReferenceSearch",
         "when": "referenceSearchVisible && !config.editor.stablePeek"
+    },
+    // 置換ペーンを閉じる
+    {
+        "key": "ctrl+[",
+        "command": "closeFindWidget",
+        "when": "editorFocus && findWidgetVisible"
     }
 ]

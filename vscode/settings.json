@@ -7,12 +7,13 @@
     "editor.renderWhitespace": "boundary", // 空白文字を表示する
     "editor.renderLineHighlight": "all", // カーソル行を強調する
     "editor.cursorBlinking": "phase", // カーソルを点滅させる
-    "editor.minimap.enabled": false, // ミニマップを表示しない
+    "editor.minimap.enabled": true, // ミニマップを表示しない
     "editor.fontSize": 14, // フォントサイズ
     "editor.cursorSurroundingLines": 9, // スクロールを開始する行数
 
     "workbench.startupEditor": "none", // 起動時に Dashborad を表示しないようにする
     "workbench.activityBar.visible": false, // 一番左のメニューバーを非表示
+    "workbench.editor.enablePreview": false, // プレビュー機能をオフにする
 
     "window.restoreFullscreen": true, // 全画面を保持
 
@@ -126,6 +127,16 @@
             "commands": [
                 {
                     "command": "workbench.action.gotoSymbol",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["t", "r"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.goToReferences",
                     "args": []
                 }
             ]
