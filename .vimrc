@@ -34,9 +34,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'osyo-manga/vim-over'
 
     " utilities
-    " Plug 'Shougo/vimshell.vim'
-    Plug 'Shougo/deol.nvim'
-    Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' } | Plug 'Shougo/neomru.vim'
     Plug 'scrooloose/nerdtree'
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
@@ -63,6 +60,8 @@ call plug#begin('~/.vim/plugged')
 
     " colorschemes
     Plug 'atelierbram/Base2Tone-vim'
+
+    Plug 'junegunn/goyo.vim'
 
     " filetype
 call plug#end()
@@ -187,7 +186,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Theme
 syntax enable
 set bg=dark
-colorscheme Base2Tone_MeadowDark
+" colorscheme Base2Tone_MeadowDark
+colorscheme Base2Tone_LakeDark
 " colorscheme hybrid
 
 highlight Normal ctermbg=NONE guibg=NONE
@@ -333,12 +333,8 @@ nnoremap <silent> <Leader>b :TagbarToggle<CR>
 nnoremap <silent> <Leader>r :NERDTreeFind<CR><C-w><C-w>
 
 " Shortcut
-" nnoremap <silent> <Leader>f :Denite file_rec<CR>
 nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <silent> <Leader>g :GFiles?<CR>
-nnoremap <silent> <Leader>c :Denite -cursor-wrap=true file_mru<CR>
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
 
 """"""""""""""""""
@@ -379,16 +375,6 @@ let g:fzf_tags_command = 'ctags -R'
 " Let <Tab> also do completion
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" denite
-call denite#custom#var('file_rec', 'command',
-      \ ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-S', '-g', ''])
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#var('grep', 'separator', [])
-call denite#custom#var('grep', 'default_opts',
-      \ ['--nocolor', '--nogroup', '--hidden', '-S', '-g'])
-
 " quickrun
 nnoremap <silent> <Leader>p :QuickRun<CR>
 let g:quickrun_config={'*': {'split': 'vertical'}}
@@ -397,10 +383,6 @@ let g:quickrun_config={'*': {'split': 'vertical'}}
 augroup WhiteSpaceCommands
     autocmd BufWritePre * :FixWhitespace
 augroup END
-
-" Deol
-nnoremap <silent> <Leader>sh :tabnew<bar>:Deol<CR>
-let g:deol#prompt_pattern = '$ '
 
 " ultisnips
 let g:UltiSnipsExpandTrigger = "<tab>"
