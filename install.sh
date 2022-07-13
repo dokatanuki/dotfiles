@@ -4,21 +4,27 @@
 if !(type "zsh" > /dev/null 2>&1) ; then
     cat << EOS
 Please install zsh
-e.g. sudo apt-get install zsh
+    $ apt-get install zsh
 EOS
     exit
 elif !(type "nvim" > /dev/null 2>&1) ; then
     cat << EOS
 Please install neovim
-e.g. sudo add-apt-repository ppa:neovim-ppa/unstable
-     sudo apt-get update
-     sudo apt-get install neovim
+    $ add-apt-repository ppa:neovim-ppa/unstable
+    $ apt-get update
+    $ apt-get install neovim
 EOS
     exit
 elif !(type "tmux" > /dev/null 2>&1) ; then
     cat << EOS
 Please install tmux
-e.g. sudo apt-get install tmux
+    $ apt-get install tmux
+EOS
+    exit
+elif !(type "ag" > /dev/null 2>&1) ; then
+    cat << EOS
+Please install silversearcher-ag
+    $ apt-get install silversearcher-ag
 EOS
     exit
 elif [ ! -e $HOME/.pyenv ] ; then
@@ -29,10 +35,9 @@ EOS
     exit
 fi
 
-# Define config files
-DOT_FILES=(".zshrc" ".vimrc" ".tmux.conf" ".agignore" ".ctags" ".direnvrc" ".latexmkrc")
+DOT_FILES=(".zshrc" ".vimrc" ".agignore" ".ctags" ".tmux.conf")
 
-# Dotfiles
+# Create symbolic links
 for file in ${DOT_FILES[@]}
 do
     if [ ! -e $HOME/$file ] ; then
@@ -40,7 +45,6 @@ do
     fi
 done
 
-# Neovim
 if type "nvim" > /dev/null 2>&1 ; then
     mkdir -p $HOME/.config/nvim
     if [ ! -e $HOME/.config/nvim/init.vim ] ; then

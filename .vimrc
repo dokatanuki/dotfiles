@@ -1,15 +1,14 @@
 """"""""""""""""""
 "  variables  "
 """"""""""""""""""
-let host_var = $HOME
-let python3_host_prog_var = expand('~/.pyenv/versions/3.7.4/envs/develop/bin/python')
-
+" let host_var = $HOME
+" let python3_host_prog_var = expand('~/.pyenv/versions/3.7.4/envs/develop/bin/python')
 
 """"""""""""""""""
 "  vim-plug.vim  "
 """"""""""""""""""
 " python3 path
-let g:python3_host_prog = python3_host_prog_var
+" let g:python3_host_prog = python3_host_prog_var
 
 if has('vim_starting')
     set rtp+=~/.vim/plugged/vim-plug
@@ -42,8 +41,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'machakann/vim-highlightedyank'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    " ag.vim is already deprecated so use mileszs/ack.vim
-    Plug 'rking/ag.vim'
+    Plug 'mileszs/ack.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'thinca/vim-quickrun'
@@ -53,7 +51,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
     Plug 'honza/vim-snippets'
-    Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
     " plantuml
     Plug 'aklt/plantuml-syntax'
@@ -320,10 +317,10 @@ augroup QfAutoCommands
     autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 
-" ag
+" ack
 if executable('ag')
-    let g:ag_working_path_mode="r"
-    nnoremap <Leader>ag :Ag --follow --nocolor --nogroup --hidden -S ""<Left>
+    let g:ackprg = 'ag --vimgrep'
+    nnoremap <Leader>ack :Ack ""<Left>
 endif
 
 " tagbar
@@ -407,22 +404,6 @@ xmap ga <Plug>(EasyAlign)
 nnoremap <silent> <Leader>m :OverCommandLine<CR>
 " カーソル下の単語をハイライト付きで置換
 nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-
-" coc
-" use <c-space>for trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
 
 """""""""""""
 " filetype  "

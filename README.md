@@ -1,24 +1,14 @@
 # dotfiles
 
 
-### Description
-Dotfiles for my personal use.
-
-### Caution
-Assume that your default shell is bash.
-bash will automatically execute tmux(tmux's default shell is fish, see `.tmux.conf`) and exit.
-This makes it possible that default shell is bash but run zsh like a default shell.
-
 ### Requirement
 ### `Required`
-- Neovim
-- pyenv(python3 and 'neovim' module)
-- zsh
 - tmux
+- zsh
+- Neovim
 ### `Optional`
 - ag
 - ctags
-- direnv
 
 ---
 
